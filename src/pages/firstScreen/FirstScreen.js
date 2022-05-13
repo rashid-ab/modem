@@ -30,7 +30,7 @@ const FirstScreen = props => {
           width: `${pos}%`,
           maxHeight: pos,
           alignSelf: 'center',
-          marginTop:5
+          marginTop:10
         }} />
       </View>
       <ScrollView
@@ -41,7 +41,7 @@ const FirstScreen = props => {
           setPos(((94 - position/4) >= 53) ? 94 - position/4 : 53);
         }}
       >
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="dark-content" />
         <HomeView 
           handleOpen={handleOpen}
           navigation={navigation}
