@@ -21,7 +21,7 @@ const FirstScreen = props => {
       flex: 1,
       paddingTop: Platform.OS === 'ios' ? 25: 0,
     }}>
-      <StatusBar barStyle="light-content"/>
+      <StatusBar barStyle="dark-content"/>
       <View style={{
         backgroundColor: 'white',
         maxHeight: pos
