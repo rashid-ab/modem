@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View } from 'react-native'
+import { View,StatusBar } from 'react-native'
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
 import { store, persistor } from './redux/store'
@@ -29,6 +29,7 @@ const App = () => {
   if (!didLoad) return <View />
   return (
     <Provider store={store}>
+      <StatusBar barStyle="dark-content" backgroundColor='white' />
       <PersistGate loading={null} persistor={persistor}>
         <Router />
       </PersistGate>

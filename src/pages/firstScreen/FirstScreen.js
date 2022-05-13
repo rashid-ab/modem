@@ -20,6 +20,7 @@ const FirstScreen = props => {
     <View style={{
       flex: 1,
       paddingTop: Platform.OS === 'ios' ? 25: 0,
+      backgroundColor:'white'
     }}>
       <StatusBar barStyle="dark-content"/>
       <View style={{
@@ -30,7 +31,7 @@ const FirstScreen = props => {
           width: `${pos}%`,
           maxHeight: pos,
           alignSelf: 'center',
-          marginTop:10
+          marginVertical:20
         }} />
       </View>
       <ScrollView
