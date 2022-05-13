@@ -29,7 +29,8 @@ const FirstScreen = props => {
         <Image source={Logo} resizeMode="contain" style={{
           width: `${pos}%`,
           maxHeight: pos,
-          alignSelf: 'center'
+          alignSelf: 'center',
+          marginTop:5
         }} />
       </View>
       <ScrollView
