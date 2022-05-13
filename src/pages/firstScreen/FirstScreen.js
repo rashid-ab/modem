@@ -25,13 +25,14 @@ const FirstScreen = props => {
       <StatusBar barStyle="dark-content"/>
       <View style={{
         backgroundColor: 'white',
-        maxHeight: pos
+        maxHeight: pos,
+        marginVertical:20
       }}>
         <Image source={Logo} resizeMode="contain" style={{
           width: `${pos}%`,
           maxHeight: pos,
           alignSelf: 'center',
-          marginVertical:20
+          
         }} />
       </View>
       <ScrollView
