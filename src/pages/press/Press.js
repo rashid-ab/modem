@@ -15,8 +15,8 @@ const Shows = props => {
   const [lettersViewHeight, setLettersViewHeight] = useState();
   const [alphaPos, setAlphaPos] = useState({});
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [presscontact, setPresscontact] = useState('');
-  const [pressoffice, setPressoffice] = useState('');
+  const [presscontact, setPresscontact] = useState([]);
+  const [pressoffice, setPressoffice] = useState([]);
   const scrollRef = useRef();
   const id = route?.params?.cityEvent?.fashionweek_id;
   console.log('totalPressContacts',totalPressContacts)

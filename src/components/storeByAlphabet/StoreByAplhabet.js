@@ -26,7 +26,7 @@ const StoreByAplhabet = props => {
     Animated.loop(
       Animated.timing(spinValue, {
         toValue: 1,
-        duration: 3000,
+        duration: 1000,
         easing: Easing.linear,
       })
     ).start()
@@ -62,8 +62,9 @@ const StoreByAplhabet = props => {
       </TouchableOpacity> : null}
       {shop?.email ? 
       <TouchableOpacity style={styles.row} onPress={() => Linking.openURL(`mailto:${shop.email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
-        <Image source={Mail} style={styles.mail}/>
+        
         <Text style={styles.additionalInfo}>{shop.name}</Text>
+        <Image source={Mail} style={styles.mail}/>
       </TouchableOpacity> : null}
       <View style={styles.padding10}>
             {shop?.website ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => shop?.website && Linking.openURL(shop?.website)}>
