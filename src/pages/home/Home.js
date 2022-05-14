@@ -35,7 +35,7 @@ const Home = props => {
   const iosStatusBarHeight = Constants.statusBarHeight;
   const iosCalc = iosStatusBarHeight + 108
   const windowHeight = Dimensions.get('window').height;
-  const modalHeight = windowHeight - (Platform.OS === 'ios' ? iosCalc : 121);
+  const modalHeight = windowHeight - (Platform.OS === 'ios' ? iosCalc : 111);
 
 
   const renderHeader = () => (
