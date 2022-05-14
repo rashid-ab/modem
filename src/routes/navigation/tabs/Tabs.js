@@ -160,7 +160,7 @@ const TabNavigator = () => {
         showLabel: false,
         style: {
           backgroundColor: '#000000',
-          height: Platform.OS === 'ios' ? 85 : 75,
+          height: Platform.OS === 'ios' ? 90 : 80,
           paddingTop: Platform.OS === 'ios' ? 0 : 10,
           paddingBottom: 10,
         },
