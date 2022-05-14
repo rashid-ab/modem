@@ -7,33 +7,44 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { connect } from 'react-redux'
 import PressOffices from '../../components/pressOffices'
 import { fetchPressContacts } from '../../redux/actions/citiesActions'
-
+import { BASEURL } from '../../utils/constants'
+import axios from 'axios'
 const Shows = props => {
   const { route, loading, fetchPressContacts, totalPressContacts, navigation } = props;
   const [refreshing, setRefreshing] = useState(false);
   const [lettersViewHeight, setLettersViewHeight] = useState();
   const [alphaPos, setAlphaPos] = useState({});
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [presscontact, setPresscontact] = useState('');
+  const [pressoffice, setPressoffice] = useState('');
   const scrollRef = useRef();
   const id = route?.params?.cityEvent?.fashionweek_id;
   console.log('totalPressContacts',totalPressContacts)
-  useEffect(() => {
-    fetchPressContacts(0, id);
+  useEffect(async () => {
+      fetchPressContacts(0, id);
+   const res=await axios.get(`${BASEURL}/fashion_weeks_press_contacts_api.php?id=${id}&type=${1}`, {
+        'headers': {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        }
+      });
+      setPresscontact(res.data)
+      setPressoffice(totalPressContacts)
   }, [])
 
   const onRefresh = () => {
     if(selectedIndex)
-    fetchPressContacts(1, id);
+      fetchPressContacts(1, id);
     else
-    fetchPressContacts(0, id);
+      fetchPressContacts(0, id);
   }
 
   const updateIndex = (index) => {
     setSelectedIndex(index);
     if(index)
-    fetchPressContacts(1, id);
+      fetchPressContacts(1, id);
     else
-    fetchPressContacts(0, id);
+      fetchPressContacts(0, id);
   }
   
   const windowHeight = Dimensions.get('window').height;
@@ -75,11 +86,11 @@ const Shows = props => {
               <Text style={styles.date}>{route?.params?.cityEvent?.dates_collection}</Text>
             </View>
             <ScrollView style={styles.headingMainContainer} horizontal={true} contentContainerStyle={{alignItems: 'center'}}>
-              <TouchableOpacity onPress={() => updateIndex(0)}>
-                <Text style={selectedIndex === 0 ? styles.pressTabBtnActive : styles.pressTabBtn}>press offices</Text>
+              <TouchableOpacity onPress={() => pressoffice.length ? updateIndex(0):''}>
+                <Text style={selectedIndex === 0 && pressoffice.length ? styles.pressTabBtnActive : styles.pressTabBtn}>press offices</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => updateIndex(1)}>
-                <Text style={selectedIndex === 1 ? styles.pressTabBtnActive : styles.pressTabBtn}>press contacts</Text>
+              <TouchableOpacity onPress={() => presscontact.length? updateIndex(1):''}>
+                <Text style={selectedIndex === 1 && presscontact.length ? styles.pressTabBtnActive : styles.pressTabBtn}>press contacts</Text>
               </TouchableOpacity>
             </ScrollView>
             <ScrollView style={{flex: 1, paddingHorizontal: 8}} contentContainerStyle={{flexGrow: 1}} ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>

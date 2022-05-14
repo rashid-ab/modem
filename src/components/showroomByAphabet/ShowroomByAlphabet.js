@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {
-  StyleSheet, TouchableOpacity, View, Text, Image, Linking, Pressable, Platform
+  StyleSheet, TouchableOpacity, View, Text, Image, Linking, Pressable, Animated,Easing
 } from 'react-native'
 import User from '../../assets/icons/addContact.png'
 import UserAdded from '../../assets/icons/contact.png'
@@ -8,6 +8,10 @@ import Pin from '../../assets/icons/pin.png'
 import Star from '../../assets/icons/star.png'
 import Mail from '../../assets/icons/mail.png'
 import I from '../../assets/icons/i.png'
+import insta from '../../assets/icons/insta.png'
+import website from '../../assets/icons/website.png'
+import twitter from '../../assets/icons/twitter.png'
+import fb from '../../assets/icons/fb.png'
 import AlertModal from '../../components/alertModal'
 import AutoHeightWebView from 'react-native-autoheight-webview'
 import WebViewModal from '../../components/webViewModal'
@@ -18,10 +22,24 @@ const ShowroomByAlphabet = props => {
   const [showDetails, setShowDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [webModal, setWebModal] = useState(false);
+  const [spinValue, setSpinValue] = useState(new Animated.Value(0))
   const handleShowDetails = () => {
     setShowDetails(!showDetails);
     setOpenedShowroom(singleShowroom?.contact1_email)
   }
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(spinValue, {
+        toValue: 1,
+        duration: 3000,
+        easing: Easing.linear,
+      })
+    ).start()
+  }, [])
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["0deg", "360deg"],
+  })
   return(
     <View style={styles.container}>
       <View style={{
@@ -42,7 +60,7 @@ const ShowroomByAlphabet = props => {
       
       <View style={styles.user}>
         <Pressable onPress={handleShowDetails} style={{maxWidth: '94%', flexDirection: 'row'}}>
-          {singleShowroom?.name ? <Image source={Star} style={styles.star}/> : <View style={styles.star}></View>}
+          {singleShowroom?.name ? <Animated.Image source={Star} style={[styles.star,{transform: [{ rotate: spin }]}]}/> : <View style={styles.star}></View>}
           <Text style={styles.contactName}>
             {singleShowroom?.name.replace(/&amp;\s*\/?/mg, ' & ')}
             <TouchableOpacity onPress={() => setShowModal(true)}>
@@ -86,12 +104,12 @@ const ShowroomByAlphabet = props => {
           </TouchableOpacity> : null}
           {singleShowroom?.email ? 
           <TouchableOpacity style={styles.row} onPress={() => Linking.openURL(`mailto:${singleShowroom.email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
-            <Text style={styles.additionalInfo}>{singleShowroom?.email}</Text>
+            <Text style={styles.additionalInfo}>{singleShowroom?.name}</Text>
             <Image source={Mail} style={styles.mail} />
           </TouchableOpacity> : null}
           {singleShowroom?.email2 ? 
           <TouchableOpacity style={styles.row} onPress={() => Linking.openURL(`mailto:${singleShowroom.email2}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
-            <Text style={styles.additionalInfo}>{singleShowroom?.email2}</Text>
+            <Text style={styles.additionalInfo}>{singleShowroom?.name}</Text>
             <Image source={Mail} style={styles.mail} />
           </TouchableOpacity> : null}
           {singleShowroom?.mobile ?
@@ -128,29 +146,29 @@ const ShowroomByAlphabet = props => {
           </TouchableOpacity> : null }
         </View>
         <View style={styles.padding10}>
-          {singleShowroom?.website ? <TouchableOpacity onPress={() => singleShowroom?.website && Linking.openURL(singleShowroom?.website)}>
-            <Text style={styles.additionalInfo}>Website</Text>
+          {singleShowroom?.website ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => singleShowroom?.website && Linking.openURL(singleShowroom?.website)}>
+            <Image source={website} style={[styles.icon,{width:16}]} />
           </TouchableOpacity>: null}
-          {singleShowroom?.facebook ? <TouchableOpacity onPress={() => singleShowroom?.facebook && Linking.openURL(singleShowroom?.facebook)}>
-            <Text style={styles.additionalInfo}>Facebook</Text>
+          {singleShowroom?.facebook ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => singleShowroom?.facebook && Linking.openURL(singleShowroom?.facebook)}>
+            <Image source={fb} style={styles.icon} />
           </TouchableOpacity>: null}
-          {singleShowroom?.instagram ? <TouchableOpacity onPress={() => singleShowroom?.instagram && Linking.openURL(singleShowroom?.instagram)}>
-            <Text style={styles.additionalInfo}>Instagram</Text> 
+          {singleShowroom?.instagram ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => singleShowroom?.instagram && Linking.openURL(singleShowroom?.instagram)}>
+            <Image source={insta} style={[styles.icon,{width:16}]} /> 
           </TouchableOpacity> : null}
-          {singleShowroom?.twitter ? <TouchableOpacity onPress={() => singleShowroom?.twitter && Linking.openURL(singleShowroom?.twitter)}>
-            <Text style={styles.additionalInfo}>Twitter</Text> 
+          {singleShowroom?.twitter ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => singleShowroom?.twitter && Linking.openURL(singleShowroom?.twitter)}>
+            <Image source={twitter} style={[styles.icon,{width:16}]} />
           </TouchableOpacity> : null}
         </View>
-        {singleShowroom?.comments ? <View style={{borderTopColor: '#b2b2b2', borderTopWidth: 1, padding: 10}}>
+        {/* {singleShowroom?.comments ? <View style={{borderTopColor: '#b2b2b2', borderTopWidth: 1, padding: 10}}>
           <AutoHeightWebView
             automaticallyAdjustContentInsets={false}
             source={{html: `<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><p style="font-size: 18px; padding: 0; font-family: 'Roboto' !important;
             ">${singleShowroom?.comments}</p></body></html>`}}
           />
-        </View>: null}
-        {/* {singleShowroom?.comments ? <View style={{borderTopColor: '#b2b2b2', borderTopWidth: 1, padding: 10}}>
-          <Text style={styles.additionalInfo}>{singleShowroom.comments}</Text> 
         </View>: null} */}
+        {singleShowroom?.comments ? <View style={{borderTopColor: '#b2b2b2', borderTopWidth: 1, padding: 10}}>
+          <Text style={styles.additionalInfo}>{singleShowroom.comments}</Text> 
+        </View>: null}
       </View>}
       <AlertModal
         body={`"My Modem – the personal concierge" will be launched soon.You will be able to create your personalized APP here by selecting information according to your interests.`}
@@ -261,6 +279,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     paddingTop: 4
   },
+  icon: {
+    height: 16,
+    width: 6
+  },
   showroomDetails: {
     borderColor: '#b2b2b2',
     borderWidth: 1,
@@ -272,7 +294,8 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   padding10: {
-    padding: 10
+    padding: 10,
+    flexDirection:'row'
   },
   mail: {
     height: 11,

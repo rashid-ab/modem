@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {
-  StyleSheet, TouchableOpacity, View, Text, Image, Linking, Pressable
+  StyleSheet, TouchableOpacity, View, Text, Image, Linking, Pressable,Animated,Easing
 } from 'react-native'
 import User from '../../assets/icons/addContact.png'
 import UserAdded from '../../assets/icons/contact.png'
@@ -8,6 +8,10 @@ import Pin from '../../assets/icons/pin.png'
 import Star from '../../assets/icons/star.png'
 import Mail from '../../assets/icons/mail.png'
 import AlertModal from '../../components/alertModal'
+import insta from '../../assets/icons/insta.png'
+import website from '../../assets/icons/website.png'
+import twitter from '../../assets/icons/twitter.png'
+import fb from '../../assets/icons/fb.png'
 import WebViewModal from '../../components/webViewModal'
 import I from '../../assets/icons/i.png'
 
@@ -17,6 +21,20 @@ const StoreByAplhabet = props => {
   const [storeDetails, setstoreDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [webModal, setWebModal] = useState(false);
+  const [spinValue, setSpinValue] = useState(new Animated.Value(0))
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(spinValue, {
+        toValue: 1,
+        duration: 3000,
+        easing: Easing.linear,
+      })
+    ).start()
+  }, [])
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["0deg", "360deg"],
+  })
   const renderStoreDetails = store.boutique.map((shop, key) => <View 
     key={key}
     style={styles.showroomDetails}
@@ -45,15 +63,29 @@ const StoreByAplhabet = props => {
       {shop?.email ? 
       <TouchableOpacity style={styles.row} onPress={() => Linking.openURL(`mailto:${shop.email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
         <Image source={Mail} style={styles.mail}/>
-        <Text style={styles.additionalInfo}>{shop.email}</Text>
+        <Text style={styles.additionalInfo}>{shop.name}</Text>
       </TouchableOpacity> : null}
+      <View style={styles.padding10}>
+            {shop?.website ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => shop?.website && Linking.openURL(shop?.website)}>
+              <Image source={website} style={[styles.icon,{width:16}]} />
+            </TouchableOpacity>: null}
+            {shop?.facebook ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => shop?.facebook && Linking.openURL(shop?.facebook)}>
+              <Image source={fb} style={styles.icon} />
+            </TouchableOpacity>: null}
+            {shop?.instagram ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => shop?.instagram && Linking.openURL(shop?.instagram)}>
+              <Image source={insta} style={[styles.icon,{width:16}]} /> 
+            </TouchableOpacity> : null}
+            {shop?.twitter ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => shop?.twitter && Linking.openURL(shop?.twitter)}>
+              <Image source={twitter} style={[styles.icon,{width:16}]} />
+            </TouchableOpacity> : null}
+          </View>
     </View>
   </View>)  
 
   return(
     <View style={styles.container}>
       <View style={styles.user}>
-        {store?.name ? <Image source={Star} style={styles.star}/> : <View style={styles.star}></View>}
+        {store?.name ? <Animated.Image source={Star} style={[styles.star,{transform: [{ rotate: spin }]}]}/> : <View style={styles.star}></View>}
         <Pressable onPress={() => setstoreDetails(!storeDetails)} style={styles.rowCenter}>
           <Text style={styles.contactName}>{store?.name.replace(/&amp;\s*\/?/mg, ' & ')}</Text>
           <TouchableOpacity onPress={() => setShowModal(true)}>
@@ -70,13 +102,13 @@ const StoreByAplhabet = props => {
         showModal={showModal}
         setShowModal={setShowModal}
       />
-      <WebViewModal 
+      {/* <WebViewModal 
         setWebModal={setWebModal}
         webModal={webModal}
         navigation={navigation}
         miniwebsiteLogin={store?.miniwebsite_login}
         miniWebsiteType={store?.miniwebsite_type}
-      />
+      /> */}
     </View>
   );
 }
@@ -172,7 +204,8 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   padding10: {
-    padding: 10
+    padding: 10,
+    flexDirection:'row'
   },
   mail: {
     height: 12,

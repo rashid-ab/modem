@@ -7,7 +7,6 @@ import PressOfficeContact from '../pressOfficeContact'
 
 const PressOffices = props => {
   const { pressOffice, letter, alphaPos, setAlphaPos, navigation } = props;
-
   const renderContact = pressOffice.map((user, key) => <PressOfficeContact 
     key={key}
     user={user}

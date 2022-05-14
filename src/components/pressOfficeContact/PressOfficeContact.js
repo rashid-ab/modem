@@ -9,6 +9,10 @@ import Star from '../../assets/icons/star.png'
 import AlertModal from '../../components/alertModal'
 import Mail from '../../assets/icons/mail.png'
 import I from '../../assets/icons/i.png'
+import insta from '../../assets/icons/insta.png'
+import website from '../../assets/icons/website.png'
+import twitter from '../../assets/icons/twitter.png'
+import fb from '../../assets/icons/fb.png'
 import WebViewModal from '../../components/webViewModal'
 
 const PressOfficeContact = props => {
@@ -63,6 +67,20 @@ const PressOfficeContact = props => {
     <Text style={styles.contactText}>{user.contact2_name}</Text>
     <Image source={Mail} style={styles.mail} />
   </TouchableOpacity> : null}
+  <View style={styles.padding10}>
+    {user?.website ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => Linking.openURL(user?.website)}>
+      <Image source={website} style={[styles.icon,{width:16}]} />
+    </TouchableOpacity> : null}
+    {user?.instagram ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => Linking.openURL(user?.instagram)}>
+      <Image source={insta} style={[styles.icon,{width:16}]} />
+    </TouchableOpacity> : null}
+    {user?.facebook ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => Linking.openURL(user?.facebook)}>
+      <Image source={fb} style={styles.icon} />
+    </TouchableOpacity> : null} 
+    {user?.twitter ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => Linking.openURL(user?.twitter)}>
+      <Image source={twitter} style={[styles.icon,{width:16}]} />
+    </TouchableOpacity> : null}
+  </View> 
 </View>
   return(
     <>
@@ -117,6 +135,10 @@ const styles = StyleSheet.create({
     maxWidth: '35%',
     overflow: 'hidden',
     marginTop: 6
+  },
+  padding10: {
+    padding: 10,
+    flexDirection:'row'
   },
   alignCenter: {
     flexDirection: 'row',
@@ -190,7 +212,7 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   mail: {
-    height: 12,
+    height: 14,
     width: 17,
     marginLeft: 8
   },
