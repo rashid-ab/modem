@@ -17,7 +17,7 @@ const PressOfficeContact = props => {
   const [showDetails, setShowDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [webModal, setWebModal] = useState(false);
-
+  console.log('user',user)
   const renderContactDetails = showDetails && <View style={styles.showDetailsContainer}>
   {user?.miniwebsite_login && user?.miniwebsite_type ?
   <TouchableOpacity style={styles.infoIconContainer} onPress={() => setWebModal(true)}>
@@ -43,7 +43,7 @@ const PressOfficeContact = props => {
     <Text style={[styles.contactText, styles.marginBottomExtra]}>T : {user.phone}</Text>
   </TouchableOpacity> : null}
   {user?.email ? <TouchableOpacity style={styles.rowCenter} onPress={() => Linking.openURL(`mailto:${user.email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
-    <Text style={styles.contactText}>{user.email}</Text>
+    <Text style={styles.contactText}>{user.name}</Text>
     <Image source={Mail} style={styles.mail} />
   </TouchableOpacity> : null}
   {user?.contact2_email ? <TouchableOpacity style={styles.rowCenter} onPress={() => Linking.openURL(`mailto:${user.contact2_email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
