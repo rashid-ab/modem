@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {
-  StyleSheet, Text, TouchableOpacity, View, Image, Linking, Pressable
+  StyleSheet, Text, TouchableOpacity, View, Image, Linking, Pressable,Animated,Easing 
 } from 'react-native'
 import { connect } from 'react-redux'
 import User from '../../assets/icons/addContact.png'
@@ -17,7 +17,20 @@ const PressOfficeContact = props => {
   const [showDetails, setShowDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [webModal, setWebModal] = useState(false);
-  console.log('user',user)
+  const [spinValue, setSpinValue] = useState(new Animated.Value(0))
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(spinValue, {
+        toValue: 1,
+        duration: 3000,
+        easing: Easing.linear,
+      })
+    ).start()
+  }, [])
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["0deg", "360deg"],
+  })
   const renderContactDetails = showDetails && <View style={styles.showDetailsContainer}>
   {user?.miniwebsite_login && user?.miniwebsite_type ?
   <TouchableOpacity style={styles.infoIconContainer} onPress={() => setWebModal(true)}>
@@ -55,7 +68,7 @@ const PressOfficeContact = props => {
     <>
       <View style={styles.alignCenter}>
         <Pressable onPress={() => setShowDetails(!showDetails)} style={{maxWidth: '94%', flexDirection: 'row'}}>
-          {user?.name ? <Image source={Star} style={styles.star}/> : <View style={styles.star}></View>}
+          {user?.name ?  <Animated.Image source={Star} style={{height: 14,width: 14,marginRight: 10,marginTop: 9,transform: [{ rotate: spin }]}}/> : <View style={styles.star}></View>}
           <Text style={styles.contactName}>
             {user.name.replace(/&amp;\s*\/?/mg, '& ')}
             <TouchableOpacity onPress={() => setShowModal(true)}>
@@ -163,7 +176,8 @@ const styles = StyleSheet.create({
     height: 14,
     width: 14,
     marginRight: 10,
-    marginTop: 9
+    marginTop: 9,
+    
   },
   showDetailsContainer: {
     borderColor: '#b2b2b2',

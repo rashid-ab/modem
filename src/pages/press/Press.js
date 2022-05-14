@@ -16,6 +16,7 @@ const Shows = props => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollRef = useRef();
   const id = route?.params?.cityEvent?.fashionweek_id;
+  console.log('totalPressContacts',totalPressContacts)
   useEffect(() => {
     fetchPressContacts(0, id);
   }, [])
