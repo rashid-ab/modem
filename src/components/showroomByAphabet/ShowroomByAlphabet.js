@@ -27,12 +27,14 @@ const ShowroomByAlphabet = props => {
     setShowDetails(!showDetails);
     setOpenedShowroom(singleShowroom?.contact1_email)
   }
+  cosnole.log('singleShowroom',singleShowroom)
   useEffect(() => {
     Animated.loop(
       Animated.timing(spinValue, {
         toValue: 1,
         duration: 3000,
         easing: Easing.linear,
+        useNativeDriver: true
       })
     ).start()
   }, [])

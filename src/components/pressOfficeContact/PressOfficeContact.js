@@ -28,6 +28,7 @@ const PressOfficeContact = props => {
         toValue: 1,
         duration: 3000,
         easing: Easing.linear,
+        useNativeDriver: true
       })
     ).start()
   }, [])

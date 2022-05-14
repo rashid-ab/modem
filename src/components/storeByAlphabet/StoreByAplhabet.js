@@ -28,6 +28,7 @@ const StoreByAplhabet = props => {
         toValue: 1,
         duration: 1000,
         easing: Easing.linear,
+        useNativeDriver: true
       })
     ).start()
   }, [])
