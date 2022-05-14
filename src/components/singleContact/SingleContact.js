@@ -44,7 +44,9 @@ const SingleContact = props => {
           <TouchableOpacity style={styles.pinIconContainer} onPress={() => Linking.openURL(contact?.link_gm)}>
             <Image source={Pin} style={styles.pinIcon} />
           </TouchableOpacity> : <></>}
+          
         </View>
+        <Text style={styles.eventDescription}>{contact?.address_comments.replace(/&amp;\s*\/?/mg, '& ')}</Text>
         <AlertModal
           body={`"My Modem – the personal concierge" will be launched soon. You will be able to create your personalized APP here by selecting information according to your interests.`}
           title='My Modem'
@@ -77,6 +79,11 @@ const styles = StyleSheet.create({
     maxWidth: '35%',
     overflow: 'hidden',
     justifyContent: 'center'
+  },
+  eventDescription: {
+    color: '#646464',
+    fontSize: 18,
+    marginTop: 4
   },
   date: {
     fontSize: 16,
