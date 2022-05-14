@@ -11,6 +11,7 @@ const FirstScreen = props => {
   const { navigation } = props;
   const modalizeRef = useRef(null);
   const [pos, setPos] = useState(94);
+  const [posheight, setPosheight] = useState(94);
   const handleOpen = dest => {
     if (modalizeRef.current) {
       modalizeRef.current.open(dest);
@@ -25,7 +26,7 @@ const FirstScreen = props => {
       <StatusBar barStyle="dark-content"/>
       <View style={{
         backgroundColor: 'white',
-        maxHeight: pos,
+        maxHeight: posheight,
         marginVertical:20
       }}>
         <Image source={Logo} resizeMode="contain" style={{
@@ -41,6 +42,7 @@ const FirstScreen = props => {
         onScroll={(e) => {
           const position = e.nativeEvent.contentOffset.y;
           setPos(((94 - position/4) >= 53) ? 94 - position/4 : 53);
+          setPosheight(((74 - position/2) >= 43) ? 74 - position/2 : 43);
         }}
       >
         <StatusBar barStyle="dark-content" />
