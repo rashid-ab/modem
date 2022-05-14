@@ -27,7 +27,7 @@ const ShowroomByAlphabet = props => {
     setShowDetails(!showDetails);
     setOpenedShowroom(singleShowroom?.contact1_email)
   }
-  cosnole.log('singleShowroom',singleShowroom)
+  console.log('singleShowroom',singleShowroom)
   useEffect(() => {
     Animated.loop(
       Animated.timing(spinValue, {
@@ -169,7 +169,7 @@ const ShowroomByAlphabet = props => {
           />
         </View>: null} */}
         {singleShowroom?.comments ? <View style={{borderTopColor: '#b2b2b2', borderTopWidth: 1, padding: 10}}>
-          <Text style={styles.additionalInfo}>{singleShowroom.comments}</Text> 
+          <Text style={styles.additionalInfo}>{singleShowroom.comments.replace(/<[^>]+>/g, '')}</Text> 
         </View>: null}
       </View>}
       <AlertModal

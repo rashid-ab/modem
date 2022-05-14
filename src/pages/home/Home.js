@@ -33,9 +33,9 @@ const Home = props => {
     }
   };
   const iosStatusBarHeight = Constants.statusBarHeight;
-  const iosCalc = iosStatusBarHeight + 90
+  const iosCalc = iosStatusBarHeight + 108
   const windowHeight = Dimensions.get('window').height;
-  const modalHeight = windowHeight - (Platform.OS === 'ios' ? iosCalc : 111);
+  const modalHeight = windowHeight - (Platform.OS === 'ios' ? iosCalc : 121);
 
 
   const renderHeader = () => (
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.45,
     shadowRadius: 16,
+    // marginTop:30
   },
   postImage: {
     width: 350,
