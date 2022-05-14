@@ -151,7 +151,7 @@ const TradeShowRooms = props => {
             {renderShowrooms}
             </>
             : 
-            <ShowroomCalendarView selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+            <ShowroomCalendarView selectedDate={selectedDate} setSelectedDate={setSelectedDate} setSelectedIndex={setSelectedIndex}/>
             }
           </ScrollView>
         </View>

@@ -36,9 +36,7 @@ const BrandsShowroom = props => {
   useEffect(() => {
     setFilteredShowRooms(brandShowroomData.length && brandShowroomData || []);
   }, [brandShowroomData]);
-  const closeCalenderModal=(value)=>{
-    setSelectedIndex(value)
-  }
+  
   useEffect(() => {
     const data = [{
       indexes: []
@@ -62,7 +60,9 @@ const BrandsShowroom = props => {
 
     setFilteredShowRooms(data);
   }, [selectedDate]);
-
+  const closeCalenderModal=()=>{
+    setSelectedIndex(0)
+  }
   const onRefresh = () => {
     fetchBrandShowroom(id);
   }
@@ -135,7 +135,7 @@ const BrandsShowroom = props => {
               {renderShowrooms}
             </>
             : 
-            <ShowroomCalendarView closeCalenderModal={closeCalenderModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+            <ShowroomCalendarView  selectedDate={selectedDate} setSelectedDate={setSelectedDate} setSelectedIndex={setSelectedIndex}/>
             }
           </ScrollView>
         </View>

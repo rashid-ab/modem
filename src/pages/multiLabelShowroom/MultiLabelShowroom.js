@@ -178,7 +178,7 @@ const MultiLabelShowroom = props => {
             : selectedIndex === 2 ? 
             renderBrands
             : 
-            <ShowroomCalendarView selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+            <ShowroomCalendarView selectedDate={selectedDate} setSelectedDate={setSelectedDate} setSelectedIndex={setSelectedIndex} />
             }
           </ScrollView>
         </View>

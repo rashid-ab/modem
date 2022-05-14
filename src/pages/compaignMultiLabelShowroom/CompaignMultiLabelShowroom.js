@@ -108,7 +108,7 @@ const CompaignMultiLabelShowroom = props => {
             : selectedIndex === 2 ? 
             renderCountries
             : 
-            <ShowroomCalendarView />
+            <ShowroomCalendarView setSelectedIndex={setSelectedIndex}/>
             }
           </ScrollView>
         </View>

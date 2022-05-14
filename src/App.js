@@ -22,7 +22,9 @@ const App = () => {
 
   // lifecycle
   useEffect(() => {
-    //handleLoadAssets()
+    //handleLoadAssets()\
+    console.disableYellowBox = true; 
+
   }, [])
 
   // rendering
