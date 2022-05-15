@@ -20,7 +20,7 @@ const CitiesEvents = props => {
   const windowHeight = Dimensions.get('window').height;
   const id = route?.params?.cityEvent?.fashionweek_id;
   const [showDetailViewHeight, setShowDetailViewHeight] = useState();
-
+console.log('brandEventsData',brandEventsData)
   useEffect(() => {
     fetchBrandEvents(id)
   }, [id]);
@@ -128,7 +128,7 @@ const CitiesEvents = props => {
                 {renderShowrooms}
               </>
               : 
-                <ShowroomCalendarView selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+                <ShowroomCalendarView selectedDate={selectedDate} setSelectedDate={setSelectedDate}  setSelectedIndex={setSelectedIndex} />
             }
           </ScrollView>
         </View>

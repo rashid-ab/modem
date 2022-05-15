@@ -30,7 +30,7 @@ const Restaurants = props => {
       })
     }} key={key}><Text style={styles.sidebarletter}>{key}</Text></TouchableOpacity>
   }) : null
-
+console.log('citiesresturant',citiesresturant)
   useEffect(() => {
     fetchCitiesResturants(id)
   }, [id])

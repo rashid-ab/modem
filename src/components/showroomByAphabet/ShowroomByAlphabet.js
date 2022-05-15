@@ -15,7 +15,7 @@ import fb from '../../assets/icons/fb.png'
 import AlertModal from '../../components/alertModal'
 import AutoHeightWebView from 'react-native-autoheight-webview'
 import WebViewModal from '../../components/webViewModal'
-
+import {fonts}from '../../theme'
 const ShowroomByAlphabet = props => {
   const { singleShowroom, setOpenedShowroom, navigation } = props;
   const [addContact, setAddContact] = useState(false);
@@ -293,7 +293,8 @@ const styles = StyleSheet.create({
   additionalInfo: {
     color: '#000000',
     fontSize: 18,
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    fontFamily:fonts.interMedium
   },
   padding10: {
     padding: 10,

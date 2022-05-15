@@ -6,8 +6,10 @@ import User from '../../assets/icons/addContact.png'
 import UserAdded from '../../assets/icons/contact.png'
 import AlertModal from '../../components/alertModal'
 import WebViewModal from '../../components/webViewModal'
-// import Star from '../../assets/icons/star.png'
+import Pin from '../../assets/icons/pin.png'
+import Mail from '../../assets/icons/mail.png'
 import I from '../../assets/icons/i.png'
+import website from '../../assets/icons/website.png'
 
 const HotelByAlphabet = props => {
   const { citieshotel, navigation } = props
@@ -34,25 +36,37 @@ const HotelByAlphabet = props => {
         </Pressable>
       </View>
       <View style={styles.innerContainer}>
-        <View style={styles.alignCenter}>
+        {/* <View style={styles.alignCenter}> */}
         {/* {citieshotel?.miniwebsite_type || citieshotel?.miniwebsite_login ?
           <TouchableOpacity style={styles.infoIconContainer} onPress={() => setWebModal(true)}>
             <Image source={I} style={styles.icon} />
           </TouchableOpacity> : null} */}
-        </View>
+        {/* </View> */}
+        <View style={styles.alignCenter}>
+          {citieshotel?.miniwebsite_login && citieshotel?.miniwebsite_type ?
+          <TouchableOpacity style={styles.infoIconContainer} onPress={() => setWebModal(true)}>
+            <Image source={I} style={styles.icon} />
+          </TouchableOpacity> : null}
+          {citieshotel?.link_gm ? 
+          <TouchableOpacity style={styles.pinIconContainer} onPress={() => Linking.openURL(citieshotel?.link_gm)}>
+            <Image source={Pin} style={styles.pinIcon} />
+          </TouchableOpacity> : null }
+        {/* <Text style={styles.eventDuration}>{singleShowroom?.dates.replace(/<br\s*\/?>/gi, "\n")}</Text> */}
+      </View>
         <Text style={styles.eventDuration}>{citieshotel.address}</Text>
         {citieshotel?.phone ? 
         <TouchableOpacity onPress={() => Linking.openURL(`tel://${citieshotel.phone}`)}>
           <Text style={styles.eventDuration}>P: {citieshotel.phone}</Text>
         </TouchableOpacity>: null }
         {citieshotel?.email ? 
-        <TouchableOpacity onPress={() => Linking.openURL(`mailto:${citieshotel.email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
-          <Text style={styles.eventDuration}>{citieshotel.email}</Text>
+        <TouchableOpacity style={styles.row} onPress={() => Linking.openURL(`mailto:${citieshotel.email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
+          <Text style={styles.eventDuration}>{citieshotel.name}</Text>
+          <Image source={Mail} style={styles.mail} />
         </TouchableOpacity>: null }
         {citieshotel?.website ? 
-        <TouchableOpacity onPress={() => Linking.openURL(citieshotel?.website)}>
-          <Text style={styles.eventDuration}>{citieshotel?.website}</Text>
-        </TouchableOpacity>: null }
+        <TouchableOpacity style={styles.infoIconContainer} onPress={() => Linking.openURL(citieshotel?.website)}>
+        <Image source={website} style={[styles.icon,{width:16}]} />
+      </TouchableOpacity> : null}
       </View>
       <AlertModal
         body={`"My Modem – the personal concierge" will be launched soon.You will be able to create your personalized APP here by selecting information
@@ -87,7 +101,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10
+    // paddingHorizontal: 10
   },
   contactName: {
     color: 'black',
@@ -180,6 +194,9 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 6,
     borderWidth: 1,
+    width: 40,
+    justifyContent: 'center',
+    flexDirection: 'row',
     marginRight: 5
   },
   icon: {
