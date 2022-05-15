@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {
   StyleSheet, Text, View, StatusBar, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity, Image, Dimensions, Pressable, TextInput
 } from 'react-native'
-import { connect } from 'react-redux'
+import { connect,useSelector } from 'react-redux'
 import ShowroomByAlphabet from '../../components/showroomByAphabet'
 import ShowroomListByName from '../../components/showroomListByName'
 import ShowroomCalendarView from '../../components/showroomCalendarView'
@@ -11,6 +11,8 @@ import { fetchMultiLabelShowrooms } from '../../redux/actions/citiesActions'
 import moment from 'moment'
 
 const MultiLabelShowroom = props => {
+  const totalMultiLabelShowroomsbybrands = useSelector((state)=>state.cities.multiLabelShowroomsbybrands);
+  console.log('totalMultiLabelShowroomsbybrands',totalMultiLabelShowroomsbybrands)
   const { route, loading, fetchMultiLabelShowrooms, totalMultiLabelShowrooms, navigation } = props;
   const [refreshing, setRefreshing] = useState(false);
   const [lettersViewHeight, setLettersViewHeight] = useState();
@@ -21,6 +23,7 @@ const MultiLabelShowroom = props => {
   const [showDetailViewHeight, setShowDetailViewHeight] = useState();
   const [removedBrand, setRemovedBrand] = useState(null);
   const [filteredShowRooms, setFilteredShowRooms] = useState(totalMultiLabelShowrooms?.length && totalMultiLabelShowrooms || []);
+  const [filteredShowRoomsbybrands, setFilteredShowRoomsbybrands] = useState(totalMultiLabelShowroomsbybrands?.length && totalMultiLabelShowroomsbybrands || []);
   const [selectedDate, setSelectedDate] = useState(null);
   const scrollRef = useRef();
   const id = route?.params?.cityEvent?.fashionweek_id;
@@ -28,7 +31,7 @@ const MultiLabelShowroom = props => {
   const filteredBrandNames = (brand) => {
     setBrandNames(brandNames.filter(b => b !== brand));
   }
-
+console.log('totalMultiLabelShowroomsbybrands',totalMultiLabelShowroomsbybrands)
   useEffect(() => {
     fetchMultiLabelShowrooms(id);
   }, [id, other]);
@@ -36,6 +39,9 @@ const MultiLabelShowroom = props => {
   useEffect(() => {
     setFilteredShowRooms(totalMultiLabelShowrooms.length && totalMultiLabelShowrooms || []);
   }, [totalMultiLabelShowrooms]);
+  useEffect(() => {
+    setFilteredShowRoomsbybrands(totalMultiLabelShowroomsbybrands.length && totalMultiLabelShowroomsbybrands || []);
+  }, [totalMultiLabelShowroomsbybrands]);
 
   useEffect(() => {
     const data = [{
@@ -108,10 +114,10 @@ const MultiLabelShowroom = props => {
   </View> 
   ): <Text style={styles.noEvents}>There are no Events</Text>
  
-  const renderBrands = (filteredShowRooms.length && Object.keys(filteredShowRooms[0].indexes).length) ? Object.keys(filteredShowRooms[0].indexes).map((index, key) => <ShowroomListByName 
+  const renderBrands = (filteredShowRoomsbybrands.length && Object.keys(filteredShowRoomsbybrands[0].indexes).length) ? Object.keys(filteredShowRoomsbybrands[0].indexes).map((index, key) => <ShowroomListByName 
     key={key}
     letter={index}
-    multiLabelShowrooms = {totalMultiLabelShowrooms[0]?.indexes[index]}
+    multiLabelShowrooms = {totalMultiLabelShowroomsbybrands[0]?.indexes[index]}
     alphaPos={alphaPos}
     setAlphaPos={setAlphaPos}
     brandNames={brandNames}
