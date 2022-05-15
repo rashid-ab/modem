@@ -216,11 +216,13 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     position:"absolute",
     zIndex:2,
+    backgroundColor:'grey'
     // transform: [{ scale: 1.1 }]
   },
   closeImg: {
     height: 16,
-    width: 16
+    width: 16,
+    tintColor: '#fff'
   },
   btn: {
     flexDirection: 'row',

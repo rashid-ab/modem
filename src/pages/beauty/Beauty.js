@@ -227,14 +227,15 @@ const styles = StyleSheet.create({
     position:"absolute",
     zIndex: 100,
     elevation: 100,
-    backgroundColor: '#333333',
     padding: 5,
-    borderRadius: 4
+    borderRadius: 4,
+    backgroundColor:'black'
     // transform: [{ scale: 1.1 }]
   },
   closeImg: {
     height: 12,
-    width: 12
+    width: 12,
+    tintColor: '#fff'
   },
   noEvents: {
     fontSize: 20,

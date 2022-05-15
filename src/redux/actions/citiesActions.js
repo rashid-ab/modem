@@ -135,7 +135,6 @@ export const fetchMultiLabelShowrooms = (id) => async dispatch => {
         'Accept': 'application/json',
       }
     });
-    // console.log('res',res.data)
     dispatch({
       type: FETCH_MULTILABEL_SHOWROOMS_BYBRANDS_SUCCESSFUL,
       payload: res.data

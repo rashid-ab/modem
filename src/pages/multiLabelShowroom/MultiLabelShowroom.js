@@ -31,7 +31,6 @@ const MultiLabelShowroom = props => {
   const filteredBrandNames = (brand) => {
     setBrandNames(brandNames.filter(b => b !== brand));
   }
-console.log('totalMultiLabelShowroomsbybrands',totalMultiLabelShowroomsbybrands)
   useEffect(() => {
     fetchMultiLabelShowrooms(id);
   }, [id, other]);
@@ -162,13 +161,13 @@ console.log('totalMultiLabelShowroomsbybrands',totalMultiLabelShowroomsbybrands)
                 filteredBrandNames(brand)
                 setRemovedBrand(brand)
               }}>
-                <Image style={{height: 8, width: 8}} source={require('../../assets/icons/closewhite.png')} />
+                <Image style={{height: 8, width: 8,tintColor: '#fff'}} source={require('../../assets/icons/closewhite.png')} />
               </Pressable>
             </View>)}
             {selectedDate && <View style={styles.filteredView}>
               <Text style={styles.brandName}>{selectedDate}</Text>
               <Pressable style={styles.closeBtnContainer} hitSlop={{top: 5, left: 5, bottom: 5, right: 5}} onPress={() => setSelectedDate(null)}>
-                <Image style={{height: 8, width: 8}} source={require('../../assets/icons/closewhite.png')} />
+                <Image style={{height: 8, width: 8,tintColor: '#fff'}} source={require('../../assets/icons/closewhite.png')} />
               </Pressable>
             </View>}
           </ScrollView>
@@ -313,14 +312,15 @@ const styles = StyleSheet.create({
     position:"absolute",
     zIndex: 100,
     elevation: 100,
-    backgroundColor: '#333333',
+    backgroundColor:'black',
     padding: 5,
     borderRadius: 4
     // transform: [{ scale: 1.1 }]
   },
   closeImg: {
     height: 12,
-    width: 12
+    width: 12,
+    tintColor: '#fff'
   },
   alphaCharacter: {
     color: '#e6e6e6',
@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
   },
   closeBtnContainer: {
-    backgroundColor: '#646464',
+    backgroundColor:'black',
     padding: 3,
     borderRadius: 9,
     marginLeft: 4

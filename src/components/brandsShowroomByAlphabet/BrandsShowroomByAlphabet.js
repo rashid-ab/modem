@@ -9,6 +9,10 @@ import Star from '../../assets/icons/star.png'
 import Mail from '../../assets/icons/mail.png'
 import { connect } from 'react-redux'
 import I from '../../assets/icons/i.png'
+import insta from '../../assets/icons/insta.png'
+import website from '../../assets/icons/website.png'
+import twitter from '../../assets/icons/twitter.png'
+import fb from '../../assets/icons/fb.png'
 import AlertModal from '../../components/alertModal'
 import AutoHeightWebView from 'react-native-autoheight-webview'
 import WebViewModal from '../../components/webViewModal'
@@ -67,13 +71,13 @@ const BrandsShowroomByAlphabet = props => {
           {brandShowroomData?.contact1_email ? 
           <TouchableOpacity style={styles.row} onPress={() => Linking.openURL(`mailto:${brandShowroomData.contact1_email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
             <Text style={styles.additionalInfo}>{brandShowroomData.contact1_name}: </Text>
-            <Text style={styles.additionalInfo}>{brandShowroomData.contact1_email}</Text>
+            {/* <Text style={styles.additionalInfo}>{brandShowroomData.contact1_email}</Text> */}
             <Image source={Mail} style={styles.mail} />
           </TouchableOpacity> : null}
           {brandShowroomData?.contact2_email ? 
           <TouchableOpacity style={styles.row} onPress={() => Linking.openURL(`mailto:${brandShowroomData.contact2_email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
             <Text style={styles.additionalInfo}>{brandShowroomData.contact2_name}: </Text>
-            <Text style={styles.additionalInfo}>{brandShowroomData.contact2_email}</Text>
+            {/* <Text style={styles.additionalInfo}>{brandShowroomData.contact2_email}</Text> */}
             <Image source={Mail} style={styles.mail} />
           </TouchableOpacity> : null}
           {brandShowroomData?.contact1_mobile ? 
@@ -106,6 +110,20 @@ const BrandsShowroomByAlphabet = props => {
             <Text style={styles.additionalInfo}>mobile: </Text>
             <Text style={styles.additionalInfo}>{brandShowroomData.phone}</Text>
           </TouchableOpacity> : null }
+          <View style={styles.padding10}>
+            {brandShowroomData?.website ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => Linking.openURL(brandShowroomData?.website)}>
+              <Image source={website} style={[styles.icon,{width:16}]} />
+            </TouchableOpacity> : null}
+            {brandShowroomData?.instagram ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => Linking.openURL(brandShowroomData?.instagram)}>
+              <Image source={insta} style={[styles.icon,{width:16}]} />
+            </TouchableOpacity> : null}
+            {brandShowroomData?.facebook ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => Linking.openURL(brandShowroomData?.facebook)}>
+              <Image source={fb} style={styles.icon} />
+            </TouchableOpacity> : null} 
+            {brandShowroomData?.twitter ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => Linking.openURL(brandShowroomData?.twitter)}>
+              <Image source={twitter} style={[styles.icon,{width:16}]} />
+            </TouchableOpacity> : null}
+          </View> 
         </View>
         {brandShowroomData?.collection ? <View style={{borderTopColor: '#b2b2b2', borderTopWidth: 1, padding: 10}}>
           <AutoHeightWebView
@@ -251,7 +269,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   padding10: {
-    padding: 10
+    padding: 10,
+    flexDirection:'row'
   },
   mail: {
     height: 12,
