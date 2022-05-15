@@ -90,7 +90,7 @@ const ShowroomByAlphabet = props => {
         <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
           {singleShowroom?.time ? <Text style={styles.additionalInfo}>{singleShowroom?.time}{'\n'}</Text> : null}
           {/* <Text style={styles.additionalInfo}>{singleShowroom?.name.replace(/&amp;\s*\/?/mg, ' & ')}</Text> */}
-          <Text style={styles.additionalInfo}>{singleShowroom?.address.replace(/<br\s*\/?>/gi, "\n")}</Text>
+          {/* <Text style={styles.additionalInfo}>{singleShowroom?.address.replace(/<br\s*\/?>/gi, "\n")}</Text> */}
         </View>
         <View style={{paddingVertical: 10}}>
           {singleShowroom?.contact1_email ? 
