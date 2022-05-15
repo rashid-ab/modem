@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import {
-  StyleSheet, Text, View, StatusBar, ScrollView, ActivityIndicator, RefreshControl,Dimensions,TouchableOpacity,Image
+  StyleSheet, Text, View, StatusBar, Linking,ScrollView, ActivityIndicator, RefreshControl,Dimensions,TouchableOpacity,Image
 } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchFashionWeeksAgenda } from '../../redux/actions/agendasActions'
