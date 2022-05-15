@@ -83,7 +83,7 @@ const ShowroomByAlphabet = props => {
             <Image source={Pin} style={styles.pinIcon} />
           </TouchableOpacity> : null }
         </View>
-        <Text style={styles.eventDuration}>{singleShowroom?.dates.replace(/<br\s*\/?>/gi, "\n")}</Text>
+        {/* <Text style={styles.eventDuration}>{singleShowroom?.dates.replace(/<br\s*\/?>/gi, "\n")}</Text> */}
       </View>
       {showDetails &&
       <View style={styles.showroomDetails}>
