@@ -1,17 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import {
-  StyleSheet, Text, View, StatusBar, ScrollView, ActivityIndicator, RefreshControl
+  StyleSheet, Text, View, StatusBar, ScrollView, ActivityIndicator, RefreshControl,Dimensions,TouchableOpacity,Image
 } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchFashionWeeksAgenda } from '../../redux/actions/agendasActions'
 import MonthWiseFashionWeekAgenda from '../../components/monthWiseFashionWeekAgenda'
-
+import Carousel from 'react-native-snap-carousel'
 const FashionWeeksAgenda = props => {
   const { loading, fetchFashionWeeksAgenda, allFashionWeeksAgendas, navigation } = props;
   const [refreshing, setRefreshing] = useState(false);
   const scrollRef = useRef();
-
+  const [carouselItems, setCarouselItems] = useState(allFashionWeeksAgendas.length && allFashionWeeksAgendas[0]?.banners);
+console.log('allFashionWeeksAgendas',allFashionWeeksAgendas[0]?.banners)
+const windowWidth = Dimensions.get('window').width;
+const ref = useRef(null);
   useEffect(() => {
     fetchFashionWeeksAgenda();
   }, [])
@@ -19,6 +22,15 @@ const FashionWeeksAgenda = props => {
   const onRefresh = () => {
     fetchFashionWeeksAgenda();
   }
+  const renderBannerCarousel = useCallback(({ item, key }) => (
+    <View style={styles.bottomHorizontalBanners}>
+      <TouchableOpacity 
+          onPress={() => item?.link && Linking.openURL(item.link)}
+        > 
+        <Image resizeMode='contain' source={item?.path_image ? {uri: item.path_image} : require('../../assets/img/home-v2-dummy1.png')} style={[styles.postImage, {minWidth: '100%', width: windowWidth > 385 ? 350 : 320 }]}/>
+      </TouchableOpacity>
+    </View>
+  ), []);
 
   const renderMonthWiseFashionAgendas = (allFashionWeeksAgendas.length && Object.keys(allFashionWeeksAgendas[0].indexes).length) ? Object.keys(allFashionWeeksAgendas[0].indexes).map((index, key) => <MonthWiseFashionWeekAgenda 
     key={key}
@@ -87,6 +99,21 @@ const FashionWeeksAgenda = props => {
                 </View>
               </View>
             </View> */}
+            <View style={{backgroundColor: '#f2f2f2'}}>
+              <Carousel
+                hasParallaxImages={true}
+                layout={'default'}
+                loop
+                autoplayInterval={7000}
+                useNativeDriver
+                autoplay={true}
+                ref={ref}
+                data={carouselItems || []}
+                sliderWidth={windowWidth}
+                itemWidth={windowWidth - 50}
+                renderItem={renderBannerCarousel}
+              />
+            </View>
           </ScrollView>
         </View>
       </View> 
@@ -123,6 +150,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  postImage: {
+    width: 350,
+    // marginRight: 12,
+    height: 230,
+  },
   cityDetailsBtn: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -134,6 +166,12 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     flexWrap: 'wrap',
     marginHorizontal: 8
+  },
+  bottomHorizontalBanners: {
+    height: 230,
+    maxHeight: 230,
+    marginLeft: Platform.OS === 'ios' ? '-1%' : 0,
+    // backgroundColor: '#f2f2f2'
   },
   cityName: {
     fontSize: 26,

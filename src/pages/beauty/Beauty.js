@@ -18,7 +18,7 @@ const Beauty = props => {
   const [alphaPos, setAlphaPos] = useState({});
   const scrollRef = useRef();
   const id = route?.params?.cityEvent?.fashionweek_id;
-
+console.log('totalBeautySaloons',totalBeautySaloons)
   useEffect(() => {
     fetchBeautySaloons(id);
     fetchCitiesEvents();

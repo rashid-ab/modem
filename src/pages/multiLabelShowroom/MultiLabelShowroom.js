@@ -12,7 +12,6 @@ import moment from 'moment'
 
 const MultiLabelShowroom = props => {
   const totalMultiLabelShowroomsbybrands = useSelector((state)=>state.cities.multiLabelShowroomsbybrands);
-  console.log('totalMultiLabelShowroomsbybrands',totalMultiLabelShowroomsbybrands)
   const { route, loading, fetchMultiLabelShowrooms, totalMultiLabelShowrooms, navigation } = props;
   const [refreshing, setRefreshing] = useState(false);
   const [lettersViewHeight, setLettersViewHeight] = useState();
@@ -28,6 +27,8 @@ const MultiLabelShowroom = props => {
   const scrollRef = useRef();
   const id = route?.params?.cityEvent?.fashionweek_id;
   const other = route?.params?.other;
+  console.log('totalMultiLabelShowroomsbybrands',totalMultiLabelShowrooms)
+
   const filteredBrandNames = (brand) => {
     setBrandNames(brandNames.filter(b => b !== brand));
   }
