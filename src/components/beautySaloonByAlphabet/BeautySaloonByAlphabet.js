@@ -4,7 +4,10 @@ import {
 } from 'react-native'
 import User from '../../assets/icons/addContact.png'
 import UserAdded from '../../assets/icons/contact.png'
+import Pin from '../../assets/icons/pin.png'
+import Mail from '../../assets/icons/mail.png'
 import I from '../../assets/icons/i.png'
+import website from '../../assets/icons/website.png'
 import AlertModal from '../../components/alertModal'
 import WebViewModal from '../../components/webViewModal'
 // import Star from '../../assets/icons/star.png'
@@ -28,20 +31,33 @@ const BeautySaloonByAlphabet = props => {
         </TouchableOpacity>
       </View>
       <View style={styles.innerContainer}>
+        <View style={styles.alignCenter}>
+            {saloon?.miniwebsite_login && saloon?.miniwebsite_type ?
+            <TouchableOpacity style={styles.infoIconContainer} onPress={() => setWebModal(true)}>
+              <Image source={I} style={styles.icon} />
+            </TouchableOpacity> : null}
+            {saloon?.link_gm ? 
+            <TouchableOpacity style={styles.saloon} onPress={() => Linking.openURL(saloon?.link_gm)}>
+              <Image source={Pin} style={styles.pinIcon} />
+            </TouchableOpacity> : null }
+          {/* <Text style={styles.eventDuration}>{singleShowroom?.dates.replace(/<br\s*\/?>/gi, "\n")}</Text> */}
+        </View>
         <Text style={styles.eventDuration}>{saloon?.address}</Text>
         {saloon?.phone ? 
         <TouchableOpacity onPress={() => Linking.openURL(`tel://${saloon.phone}`)}>
           <Text style={styles.eventDuration}>P: {saloon.phone}</Text>
         </TouchableOpacity>: null }
-        {saloon?.website ?
-        <TouchableOpacity onPress={() => Linking.openURL(saloon.website)}>
-          <Text style={styles.eventDuration}>{ saloon.website }</Text>
-        </TouchableOpacity> : null}
         {saloon?.email ? 
-        <TouchableOpacity onPress={() => Linking.openURL(`mailto:${saloon.email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
-          <Text style={styles.eventDuration}>{saloon.email}</Text>
+        <TouchableOpacity style={styles.row} onPress={() => Linking.openURL(`mailto:${saloon.email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
+          <Text style={styles.eventDuration}>{saloon.name}</Text>
+          <Image source={Mail} style={styles.mail} />
         </TouchableOpacity>: null }
+        {saloon?.website ?
+        <TouchableOpacity style={styles.infoIconContainer} onPress={() => Linking.openURL(saloon.website)}>
+          <Image source={website} style={[styles.icon,{width:16}]} />
+        </TouchableOpacity> : null}
       </View>
+        
       <AlertModal
         body={`"My Modem – the personal concierge" will be launched soon.You will be able to create your personalized APP here by selecting information
   according to your interests.`}
@@ -75,7 +91,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10
+    // paddingHorizontal: 10
   },
   contactName: {
     color: 'black',
@@ -168,6 +184,9 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 6,
     borderWidth: 1,
+    width: 40,
+    justifyContent: 'center',
+    flexDirection: 'row',
     marginRight: 5
   },
   icon: {

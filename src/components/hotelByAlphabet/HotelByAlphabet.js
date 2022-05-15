@@ -52,7 +52,7 @@ const HotelByAlphabet = props => {
             <Image source={Pin} style={styles.pinIcon} />
           </TouchableOpacity> : null }
         {/* <Text style={styles.eventDuration}>{singleShowroom?.dates.replace(/<br\s*\/?>/gi, "\n")}</Text> */}
-      </View>
+        </View>
         <Text style={styles.eventDuration}>{citieshotel.address}</Text>
         {citieshotel?.phone ? 
         <TouchableOpacity onPress={() => Linking.openURL(`tel://${citieshotel.phone}`)}>
@@ -65,7 +65,7 @@ const HotelByAlphabet = props => {
         </TouchableOpacity>: null }
         {citieshotel?.website ? 
         <TouchableOpacity style={styles.infoIconContainer} onPress={() => Linking.openURL(citieshotel?.website)}>
-        <Image source={website} style={[styles.icon,{width:16}]} />
+          <Image source={website} style={[styles.icon,{width:16}]} />
       </TouchableOpacity> : null}
       </View>
       <AlertModal
