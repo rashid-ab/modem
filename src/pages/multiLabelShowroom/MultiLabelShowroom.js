@@ -23,7 +23,7 @@ const MultiLabelShowroom = props => {
   const [showDetailViewHeight, setShowDetailViewHeight] = useState();
   const [removedBrand, setRemovedBrand] = useState(null);
   const [filteredShowRooms, setFilteredShowRooms] = useState(totalMultiLabelShowrooms?.length && totalMultiLabelShowrooms || []);
-  const [filteredShowRoomsbybrands, setFilteredShowRoomsbybrands] = useState(totalMultiLabelShowroomsbybrands?.length && totalMultiLabelShowroomsbybrands || []);
+  const [filteredShowRoomsbybrands, setFilteredShowRoomsbybrands] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const scrollRef = useRef();
   const id = route?.params?.cityEvent?.fashionweek_id;
