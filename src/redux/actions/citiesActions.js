@@ -124,7 +124,7 @@ export const fetchMultiLabelShowrooms = (id) => async dispatch => {
     type: FETCH_MULTILABEL_SHOWROOMS_REQUEST_SENT
   })
   try {
-    const resp = await axios.get(id ? `${BASEURL}/fashion_weeks_multilabel_showrooms_brands_api.php?id=${id}` : `${BASEURL}/sales_campaigns_showrooms_api.php`, {
+    const resp = await axios.get(id ? `${BASEURL}/fashion_weeks_multilabel_showrooms_api.php?id=${id}` : `${BASEURL}/sales_campaigns_showrooms_api.php`, {
       'headers': {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
