@@ -85,7 +85,7 @@ const Agenda = props => {
         {renderContent()}
       </Modalize>
       <ScrollView style={{flex: 1}} contentContainerStyle={{ flexGrow: 1 }}>
-        <StatusBar barStyle="light-content" />   
+        <StatusBar barStyle="dark-content" />   
         {/* <View style={styles.rootContainer}>
           <View style={styles.postsContainer}>
             <Image source={Dummy} style={styles.postImage} />

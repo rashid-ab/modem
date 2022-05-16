@@ -25,7 +25,7 @@ const WebViewModal = props => {
       onBackdropPress={() => setWebModal(!webModal)}
     >
       <View style={styles.centeredView} >
-        <StatusBar barStyle="light-content" />   
+        <StatusBar barStyle="dark-content" />   
         <View style={[styles.modalContainer, {paddingTop: Platform.OS === 'ios' ? iosStatusBarHeight : 0}]}>
           <TouchableOpacity onPress={() => navigation.navigate('FirstScreen')}>
             <Image source={Logo} style={styles.logo} />

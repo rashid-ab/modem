@@ -130,7 +130,7 @@ const MultiLabelShowroom = props => {
     {loading ? <View style={styles.centerMe}><ActivityIndicator size="large" color= "black"/></View>
       :
       <View style={{flex: 1}}>
-        <StatusBar barStyle="light-content"/>
+        <StatusBar barStyle="dark-content"/>
         {(!selectedIndex || selectedIndex === 2) && <View
           onLayout={(event) => {
             setLettersViewHeight(event.nativeEvent.layout.height)

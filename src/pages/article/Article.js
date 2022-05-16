@@ -16,7 +16,7 @@ const Article = props => {
 
   return(
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <StatusBar barStyle="light-content"/>
+      <StatusBar barStyle="dark-content"/>
       <TouchableOpacity onPress={() => navigation.navigate('FirstScreen')}>
         <Image source={Logo} style={styles.logo} />
       </TouchableOpacity>

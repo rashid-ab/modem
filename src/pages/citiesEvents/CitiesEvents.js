@@ -92,7 +92,7 @@ console.log('brandEventsData',brandEventsData)
         >
           {showLetters}
         </View>
-        <StatusBar barStyle="light-content"/>
+        <StatusBar barStyle="dark-content"/>
         <View style={styles.rootContainer}>
           <View 
             style={styles.cityDetailsBtn}

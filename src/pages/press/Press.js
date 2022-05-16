@@ -79,7 +79,7 @@ const Shows = props => {
         </View>
 
         <View style={{flex: 1}}>
-          <StatusBar barStyle="light-content"/>
+          <StatusBar barStyle="dark-content"/>
           <View style={styles.rootContainer}>
             <View style={styles.cityDetailsBtn}>
               <Text style={styles.cityName}>{route?.params?.cityEvent?.city}</Text>

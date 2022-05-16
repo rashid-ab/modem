@@ -103,7 +103,7 @@ const BrandsShowroom = props => {
         >
           {showLetters}
         </View>
-        <StatusBar barStyle="light-content"/>
+        <StatusBar barStyle="dark-content"/>
         <View style={styles.rootContainer}>
           {!other && <View style={styles.cityDetailsBtn} 
             onLayout={(event) => {

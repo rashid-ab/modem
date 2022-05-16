@@ -10,15 +10,56 @@ import Carousel from 'react-native-snap-carousel'
 const FashionWeeksAgenda = props => {
   const { loading, fetchFashionWeeksAgenda, allFashionWeeksAgendas, navigation } = props;
   const [refreshing, setRefreshing] = useState(false);
+  const [season, setSeason] = useState('');
+  const [year, setYear] = useState(2022);
   const scrollRef = useRef();
   const [carouselItems, setCarouselItems] = useState(allFashionWeeksAgendas.length && allFashionWeeksAgendas[0]?.banners);
 console.log('allFashionWeeksAgendas',allFashionWeeksAgendas[0]?.banners)
 const windowWidth = Dimensions.get('window').width;
 const ref = useRef(null);
   useEffect(() => {
-    fetchFashionWeeksAgenda();
+    fetchFashionWeeksAgenda('');
   }, [])
-
+  const Apicall = (text) => {
+    if(text=='next'){
+      if(season==''){
+        const param='s=ss&y='+year;
+        setSeason('summer')
+        fetchFashionWeeksAgenda(param);
+      }
+      if(season=='summer'){
+        const param='s=fw&y='+year;
+        setSeason('fall')
+        fetchFashionWeeksAgenda(param);
+      }
+      if(season=='fall'){
+        const years=year+1;
+        const param='s=ss&y='+years;
+        setSeason('summer')
+        setYear(years)
+        fetchFashionWeeksAgenda(param);
+      }
+    }
+    if(text=='pre'){
+      if(season==''){
+        const param='s=fw&y='+year;
+        setSeason('fall')
+        fetchFashionWeeksAgenda(param);
+      }
+      if(season=='fall'){
+        const param='s=ss&y='+year;
+        setSeason('summer')
+        fetchFashionWeeksAgenda(param);
+      }
+      if(season=='summer'){
+        const years=year-1;
+        const param='s=fw&y='+years;
+        setSeason('fall')
+        setYear(years)
+        fetchFashionWeeksAgenda(param);
+      }
+    }
+  }
   const onRefresh = () => {
     fetchFashionWeeksAgenda();
   }
@@ -38,20 +79,33 @@ const ref = useRef(null);
     month={index}
     navigation={navigation}
   />) : <Text style={styles.noEvents}>There are no agendas in this category.</Text> 
-
+    
   return(
     <View style={{flex: 1, backgroundColor: 'white'}}>
     {loading ? <View style={styles.centerMe}><ActivityIndicator size="large" color= "black"/></View>
       :
       <View style={{flex: 1}}>
-        <StatusBar barStyle="light-content"/>
+        {/* <StatusBar barStyle="dark-content"/> */}
         <View style={styles.rootContainer}>
           <View style={styles.cityDetailsBtn}>
             <Text style={styles.cityName}>Fashion Weeks Agenda</Text>
           </View>
+          
           <ScrollView style={{flex: 1, paddingHorizontal: 8}} contentContainerStyle={{flexGrow: 1}} ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
             <View style={{paddingVertical: 60}}>
               <Text style={styles.gernalHeading}>{allFashionWeeksAgendas && allFashionWeeksAgendas[0]?.title}</Text>
+            </View>
+            <View style={{flex:1,flexDirection:'row',marginBottom:5}}>
+              <View style={{flex:.5,paddingLeft:5,flexDirection:'row'}}>
+                <TouchableOpacity onPress={()=>{Apicall('pre')}} style={{padding:10,borderRadius:5,backgroundColor:'grey',width:70}}>
+                  <Text style={{color:'white'}}>Previous</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={{flex:.5,paddingRight:5,justifyContent:'flex-end',flexDirection:'row'}}>
+                <TouchableOpacity onPress={()=>{Apicall('next')}} style={{padding:10,borderRadius:5,backgroundColor:'grey',width:70,alignItems:'center'}}>
+                  <Text style={{color:'white'}}>Next</Text>
+                </TouchableOpacity>
+              </View>
             </View>
             {/* <View style={styles.btnGroup}>
               <TouchableOpacity style={styles.btn}>

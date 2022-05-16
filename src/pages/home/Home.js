@@ -83,7 +83,7 @@ const Home = props => {
         {renderContent()}
       </Modalize>
       <ScrollView style={{flex: 1}} contentContainerStyle={{flexGrow: 1}}>
-        {/* <StatusBar barStyle="light-content" />    */}
+        {/* <StatusBar barStyle="dark-content" />    */}
         <HomeView 
           handleOpen={handleOpen}
           navigation={navigation}

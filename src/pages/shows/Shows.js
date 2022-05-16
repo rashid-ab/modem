@@ -51,7 +51,7 @@ const Shows = props => {
             {showLetters}
           </View>}
         <ScrollView style={{flex: 1}} contentContainerStyle={{ flexGrow: 1 }} ref={scrollRef}>
-          <StatusBar barStyle="light-content"/>
+          <StatusBar barStyle="dark-content"/>
           <View style={styles.rootContainer}>
             <View style={styles.cityDetailsBtn}>
               <Text style={styles.cityName}>{route?.params?.cityEvent?.city.replace(/&amp;\s*\/?/mg, '& ')}</Text>

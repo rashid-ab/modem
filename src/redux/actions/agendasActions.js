@@ -2,17 +2,29 @@ import { FETCH_FASHION_WEEKS_AGENDA_REQUEST_SENT, FETCH_FASHION_WEEKS_AGENDA_SUC
 import axios from 'axios'
 import { BASEURL } from '../../utils/constants'
 
-export const fetchFashionWeeksAgenda = () => async dispatch => {
+export const fetchFashionWeeksAgenda = (param) => async dispatch => {
   dispatch({
     type: FETCH_FASHION_WEEKS_AGENDA_REQUEST_SENT
   })
   try {
+    console.log('params',param)
+    console.log('params',`${BASEURL}/apilfashion_week_calendar_api.php?${param}`)
+    if(param==''){
     const resp = await axios.get(`${BASEURL}/fashion_week_calendar_api.php`, {
       'headers': {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       }
     });
+  }
+  else{
+    const resp = await axios.get(`${BASEURL}/apilfashion_week_calendar_api.php?${param}`, {
+      'headers': {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    });
+  }
     dispatch({
       type: FETCH_FASHION_WEEKS_AGENDA_SUCCESSFUL,
       payload: resp.data
