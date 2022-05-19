@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10
+    // paddingHorizontal: 10
   },
   contactName: {
     color: 'black',
