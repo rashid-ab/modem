@@ -200,7 +200,8 @@ const styles = StyleSheet.create({
     width: 40,
     justifyContent: 'center',
     flexDirection: 'row',
-    marginRight: 5
+    marginRight: 5,
+    marginTop: 5
   },
   icon: {
     height: 16,
