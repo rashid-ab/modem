@@ -126,7 +126,7 @@ const BrandsShowroom = props => {
             </View>}
           </View>
           {selectedIndex ? <Pressable hitSlop={{top: 5, left: 5, bottom: 5, right: 5}} style={[styles.closeBtn, {top: (showDetailViewHeight + 20) || 0}]} onPress={() => updateIndex(0)}>
-            <Image style={styles.closeImg} source={require('../../assets/icons/closewhite.png')} />
+            <Image style={styles.closeImg} source={require('../../assets/icons/close.png')} />
           </Pressable>: null }
           <ScrollView style={{flex: 1, paddingHorizontal: 8}} contentContainerStyle={{flexGrow: 1}} ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
             {!selectedIndex ? 
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     marginTop: 40
   },
   sidebarletter: {
-    color: '#e6e6e6',
+    color: '#c4bebe',
     fontSize: 16,
   },  
   centerMe: {
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     position:"absolute",
     zIndex: 100,
     elevation: 100,
-    padding: 5,
+    padding: 3,
     borderRadius: 4,
     backgroundColor:'black'
     // transform: [{ scale: 1.1 }]

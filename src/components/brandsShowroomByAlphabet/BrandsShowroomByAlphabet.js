@@ -70,13 +70,13 @@ const BrandsShowroomByAlphabet = props => {
         <View style={{paddingVertical: 10}}>
           {brandShowroomData?.contact1_email ? 
           <TouchableOpacity style={styles.row} onPress={() => Linking.openURL(`mailto:${brandShowroomData.contact1_email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
-            <Text style={styles.additionalInfo}>{brandShowroomData.contact1_name}: </Text>
+            <Text style={styles.additionalInfo}>{brandShowroomData.contact1_name} </Text>
             {/* <Text style={styles.additionalInfo}>{brandShowroomData.contact1_email}</Text> */}
             <Image source={Mail} style={styles.mail} />
           </TouchableOpacity> : null}
           {brandShowroomData?.contact2_email ? 
           <TouchableOpacity style={styles.row} onPress={() => Linking.openURL(`mailto:${brandShowroomData.contact2_email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
-            <Text style={styles.additionalInfo}>{brandShowroomData.contact2_name}: </Text>
+            <Text style={styles.additionalInfo}>{brandShowroomData.contact2_name} </Text>
             {/* <Text style={styles.additionalInfo}>{brandShowroomData.contact2_email}</Text> */}
             <Image source={Mail} style={styles.mail} />
           </TouchableOpacity> : null}

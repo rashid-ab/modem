@@ -173,7 +173,7 @@ const MultiLabelShowroom = props => {
             </View>}
           </ScrollView>
           {selectedIndex ? <Pressable hitSlop={{top: 10, left: 10, bottom: 10, right: 10}} style={[styles.closeBtn, {top: (showDetailViewHeight + 20) || 0}]} onPress={() => updateIndex(0)}>
-            <Image style={styles.closeImg} source={require('../../assets/icons/closewhite.png')} />
+            <Image style={styles.closeImg} source={require('../../assets/icons/close.png')} />
           </Pressable>: null }
           <ScrollView style={{flex: 1, paddingHorizontal: 8}} contentContainerStyle={{flexGrow: 1}} ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
             {!selectedIndex ? 
@@ -314,13 +314,13 @@ const styles = StyleSheet.create({
     zIndex: 100,
     elevation: 100,
     backgroundColor:'black',
-    padding: 5,
+    padding: 3,
     borderRadius: 4
     // transform: [{ scale: 1.1 }]
   },
   closeImg: {
-    height: 12,
-    width: 12,
+    height: 14,
+    width: 14,
     tintColor: '#fff'
   },
   alphaCharacter: {

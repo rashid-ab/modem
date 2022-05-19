@@ -136,12 +136,12 @@ const TradeShowRooms = props => {
             {selectedDate && <View style={styles.filteredView}>
               <Text style={styles.brandName}>{selectedDate}</Text>
               <Pressable style={styles.closeBtnContainer} hitSlop={{top: 5, left: 5, bottom: 5, right: 5}} onPress={() => setSelectedDate(null)}>
-                <Image style={{height: 8, width: 8,backgroundColor:'white'}} source={require('../../assets/icons/closewhite.png')} />
+                <Image style={{height: 8, width: 8,tintColor:'white'}} source={require('../../assets/icons/closewhite.png')} />
               </Pressable>
             </View>}
           </ScrollView>
           {selectedIndex ? <Pressable hitSlop={{top: 5, left: 5, bottom: 5, right: 5}} style={[styles.closeBtn, {top: (showDetailViewHeight + 20) || 0}]} onPress={() => updateIndex(0)}>
-            <Image style={styles.closeImg} source={require('../../assets/icons/closewhite.png')} />
+            <Image style={styles.closeImg} source={require('../../assets/icons/close.png')} />
           </Pressable>: null }
           <ScrollView style={{flex: 1, paddingHorizontal: 8}} contentContainerStyle={{flexGrow: 1}} ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
             {!selectedIndex ? 
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     zIndex: 100,
     elevation: 100,
     backgroundColor: 'black',
-    padding: 5,
+    padding: 3,
     borderRadius: 4
     // transform: [{ scale: 1.1 }]
   },

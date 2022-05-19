@@ -12,6 +12,8 @@ import axios from 'axios'
 const Shows = props => {
   const { route, loading, fetchPressContacts, totalPressContacts, navigation } = props;
   const [refreshing, setRefreshing] = useState(false);
+  const [office, setOffice] = useState(false);
+  const [contact, setContact] = useState(false);
   const [lettersViewHeight, setLettersViewHeight] = useState();
   const [alphaPos, setAlphaPos] = useState({});
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -19,7 +21,6 @@ const Shows = props => {
   const [pressoffice, setPressoffice] = useState([]);
   const scrollRef = useRef();
   const id = route?.params?.cityEvent?.fashionweek_id;
-  
   useEffect(async () => {
       fetchPressContacts(0, id);
    const res=await axios.get(`${BASEURL}/fashion_weeks_press_contacts_api.php?id=${id}&type=${1}`, {
@@ -28,26 +29,27 @@ const Shows = props => {
           'Accept': 'application/json',
         }
       });
-      if(!Array.isArray(totalPressContacts[0].indexes) && !Array.isArray(res.data[0].indexes)){
-        console.log('index','office')
-        setSelectedIndex(0);
+      setOffice(Array.isArray(totalPressContacts[0].indexes))
+      setContact(Array.isArray(res.data[0].indexes))
+      setPresscontact(res.data)
+      if(Array.isArray(totalPressContacts[0].indexes) && Array.isArray(res.data[0].indexes)){
+        return setSelectedIndex(0);
       }
       if(!Array.isArray(totalPressContacts[0].indexes)){
-        console.log('index','office')
         setSelectedIndex(0);
+        console.log('totalPressContacts',totalPressContacts)
+        return;
       }
       if(Array.isArray(totalPressContacts[0].indexes) && !Array.isArray(res.data[0].indexes)){
-        console.log('index','office')
         setSelectedIndex(1);
         fetchPressContacts(1, id);
+        return;
       }
       if(!Array.isArray(res.data[0].indexes)){
-        console.log('index','contact')
         setSelectedIndex(1);
         fetchPressContacts(1, id);
+        return;
       }
-      setPresscontact(res.data)
-      setPressoffice(totalPressContacts)
   }, [])
   
   const onRefresh = () => {
@@ -104,11 +106,11 @@ const Shows = props => {
               <Text style={styles.date}>{route?.params?.cityEvent?.dates_collection}</Text>
             </View>
             <ScrollView style={styles.headingMainContainer} horizontal={true} contentContainerStyle={{alignItems: 'center'}}>
-              <TouchableOpacity onPress={() =>selectedIndex === 0 && !Array.isArray(totalPressContacts[0].indexes) ? updateIndex(0):''}>
-                <Text style={selectedIndex === 0 && !Array.isArray(totalPressContacts[0].indexes) ? styles.pressTabBtnActive : styles.pressTabBtn}>press offices</Text>
+              <TouchableOpacity onPress={() =>office?'':updateIndex(0)}>
+                <Text style={selectedIndex === 0 && !office ? styles.pressTabBtnActive : styles.pressTabBtn}>press offices</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() =>presscontact.length && !Array.isArray(presscontact[0].indexes)? updateIndex(1):''}>
-                <Text style={selectedIndex === 1 && presscontact.length && !Array.isArray(presscontact[0].indexes) ? styles.pressTabBtnActive : styles.pressTabBtn}>press contacts</Text>
+              <TouchableOpacity onPress={() =>presscontact.length && !contact? updateIndex(1):''}>
+                <Text style={selectedIndex === 1 && presscontact.length && !contact ? styles.pressTabBtnActive : styles.pressTabBtn}>press contacts</Text>
               </TouchableOpacity>
             </ScrollView>
             <ScrollView style={{flex: 1, paddingHorizontal: 8}} contentContainerStyle={{flexGrow: 1}} ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
@@ -240,7 +242,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15 
   },
   letter: {
-    color: '#e6e6e6',
+    color: '#c4bebe',
     fontSize: 16,
   },
   noEvents: {
