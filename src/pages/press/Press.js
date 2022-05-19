@@ -19,7 +19,7 @@ const Shows = props => {
   const [pressoffice, setPressoffice] = useState([]);
   const scrollRef = useRef();
   const id = route?.params?.cityEvent?.fashionweek_id;
-  console.log('totalPressContacts',totalPressContacts)
+  
   useEffect(async () => {
       fetchPressContacts(0, id);
    const res=await axios.get(`${BASEURL}/fashion_weeks_press_contacts_api.php?id=${id}&type=${1}`, {
@@ -28,10 +28,28 @@ const Shows = props => {
           'Accept': 'application/json',
         }
       });
+      if(!Array.isArray(totalPressContacts[0].indexes) && !Array.isArray(res.data[0].indexes)){
+        console.log('index','office')
+        setSelectedIndex(0);
+      }
+      if(!Array.isArray(totalPressContacts[0].indexes)){
+        console.log('index','office')
+        setSelectedIndex(0);
+      }
+      if(Array.isArray(totalPressContacts[0].indexes) && !Array.isArray(res.data[0].indexes)){
+        console.log('index','office')
+        setSelectedIndex(1);
+        fetchPressContacts(1, id);
+      }
+      if(!Array.isArray(res.data[0].indexes)){
+        console.log('index','contact')
+        setSelectedIndex(1);
+        fetchPressContacts(1, id);
+      }
       setPresscontact(res.data)
       setPressoffice(totalPressContacts)
   }, [])
-
+  
   const onRefresh = () => {
     if(selectedIndex)
       fetchPressContacts(1, id);
@@ -44,6 +62,7 @@ const Shows = props => {
     if(index)
       fetchPressContacts(1, id);
     else
+    if(!Array.isArray(totalPressContacts[0].indexes))
       fetchPressContacts(0, id);
   }
   
@@ -63,7 +82,6 @@ const Shows = props => {
     alphaPos={alphaPos}
     setAlphaPos={setAlphaPos}
   />) : <Text style={styles.noEvents}>There are no Events</Text>
-
   return(
     <View style={{flex: 1, backgroundColor: 'white', elevation: 3}}>
     {loading ? <View style={styles.centerMe}><ActivityIndicator size="large" color= "black"/></View>
@@ -86,11 +104,11 @@ const Shows = props => {
               <Text style={styles.date}>{route?.params?.cityEvent?.dates_collection}</Text>
             </View>
             <ScrollView style={styles.headingMainContainer} horizontal={true} contentContainerStyle={{alignItems: 'center'}}>
-              <TouchableOpacity onPress={() => pressoffice.length ? updateIndex(0):''}>
-                <Text style={selectedIndex === 0 && pressoffice.length ? styles.pressTabBtnActive : styles.pressTabBtn}>press offices</Text>
+              <TouchableOpacity onPress={() =>selectedIndex === 0 && !Array.isArray(totalPressContacts[0].indexes) ? updateIndex(0):''}>
+                <Text style={selectedIndex === 0 && !Array.isArray(totalPressContacts[0].indexes) ? styles.pressTabBtnActive : styles.pressTabBtn}>press offices</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => presscontact.length? updateIndex(1):''}>
-                <Text style={selectedIndex === 1 && presscontact.length ? styles.pressTabBtnActive : styles.pressTabBtn}>press contacts</Text>
+              <TouchableOpacity onPress={() =>presscontact.length && !Array.isArray(presscontact[0].indexes)? updateIndex(1):''}>
+                <Text style={selectedIndex === 1 && presscontact.length && !Array.isArray(presscontact[0].indexes) ? styles.pressTabBtnActive : styles.pressTabBtn}>press contacts</Text>
               </TouchableOpacity>
             </ScrollView>
             <ScrollView style={{flex: 1, paddingHorizontal: 8}} contentContainerStyle={{flexGrow: 1}} ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>

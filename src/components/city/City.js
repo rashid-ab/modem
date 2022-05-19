@@ -72,7 +72,6 @@ const City = props => {
   useEffect(() => {
     setOpenedCity(homeScreenEventId);
   }, [homeScreenEventId])
-console.log('cityEvent',cityEvent)
   const handleShows = (link) => {
     link === 'Shows' && fetchFashionWeekShows(cityEvent.fashionweek_id);
 

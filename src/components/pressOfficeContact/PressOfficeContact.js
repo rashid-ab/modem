@@ -233,8 +233,9 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 6,
     borderWidth: 1,
-    alignSelf: 'flex-start',
-    marginBottom: 8,
+    width: 40,
+    justifyContent: 'center',
+    flexDirection: 'row',
     marginRight: 5
   },
 })
