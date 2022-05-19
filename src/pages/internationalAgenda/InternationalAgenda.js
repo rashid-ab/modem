@@ -21,7 +21,7 @@ const InternationalAgenda = props => {
   const onRefresh = () => {
     fetchInternationAgenda()
   }
-  
+  console.log('internationAgendadata',internationAgendadata)
   const updateIndex = (index) => {
     if (selectedIndex === index) setSelectedIndex(0);
     else setSelectedIndex(index)
@@ -32,7 +32,7 @@ const InternationalAgenda = props => {
   </View>
   const renderMonthWiseFashionAgendas = (internationAgendadata?.length && Object.keys(internationAgendadata[0].indexes).length) ? Object.keys(internationAgendadata[0].indexes).map((index, key) => <MonthWiseFashionWeekAgenda 
   key={key}
-  fashionWeekAgenda={internationAgendadata[0].indexes[index]}
+  fashionWeekAgenda={internationAgendadata[0].indexes}
   month={index}
   navigation={navigation}
 />) : <Text style={styles.noEvents}>There are no agendas in this category.</Text> 

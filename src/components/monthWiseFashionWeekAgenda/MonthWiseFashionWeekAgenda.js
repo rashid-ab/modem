@@ -21,7 +21,7 @@ const compaignList = {
 
 const MonthWiseFashionWeekAgenda = props => {
   const { fashionWeekAgenda, month, navigation } = props;
-
+  console.log('fashionWeekAgenda',fashionWeekAgenda)
   return(
     <>
       {fashionWeekAgenda.length && month === 'digital' ? <View style={styles.monthWiseContainer}>
