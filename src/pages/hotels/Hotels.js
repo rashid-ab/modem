@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     maxWidth: '40%',
   },
   sidebarletter: {
-    color: '#e6e6e6',
+    color: '#999696',
     fontSize: 16,
   },
   date: {

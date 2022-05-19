@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     width: 40,
     justifyContent: 'center',
     flexDirection: 'row',
-    marginRight: 5
+    marginRight: 0
   },
   icon: {
     height: 16,

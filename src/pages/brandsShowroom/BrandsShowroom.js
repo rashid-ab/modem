@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     marginTop: 40
   },
   sidebarletter: {
-    color: '#c4bebe',
+    color: '#999696',
     fontSize: 16,
   },  
   centerMe: {

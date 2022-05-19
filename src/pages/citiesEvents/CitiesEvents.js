@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     textAlign: 'right'
   },
   sidebarletter: {
-    color: '#c4bebe',
+    color: '#999696',
     fontSize: 16,
   },
   headingMainContainer: {

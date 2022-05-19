@@ -57,6 +57,7 @@ const TabNavigator = () => {
       screenOptions={({ route }) => ({
         // eslint-disable-next-line react/prop-types
         tabBarIcon: ({ focused }) => {
+          console.log('focues',focused)
           switch (route.name) {
             case 'Default':
               return (

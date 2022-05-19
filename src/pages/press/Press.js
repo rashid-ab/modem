@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15 
   },
   letter: {
-    color: '#c4bebe',
+    color: '#999696',
     fontSize: 16,
   },
   noEvents: {
