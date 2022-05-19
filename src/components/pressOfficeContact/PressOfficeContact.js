@@ -213,9 +213,9 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   mail: {
-    height: 14,
-    width: 17,
-    marginLeft: 8
+    height: 11,
+    width: 16,
+    marginHorizontal: 8
   },
   marginBottomExtra: {
     marginBottom: 20
