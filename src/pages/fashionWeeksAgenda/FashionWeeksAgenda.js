@@ -14,52 +14,52 @@ const FashionWeeksAgenda = props => {
   const [year, setYear] = useState(2022);
   const scrollRef = useRef();
   const [carouselItems, setCarouselItems] = useState(allFashionWeeksAgendas.length && allFashionWeeksAgendas[0]?.banners);
-console.log('allFashionWeeksAgendas',allFashionWeeksAgendas[0]?.banners)
+console.log('allFashionWeeksAgendas',allFashionWeeksAgendas)
 const windowWidth = Dimensions.get('window').width;
 const ref = useRef(null);
   useEffect(() => {
     fetchFashionWeeksAgenda('');
   }, [])
-  const Apicall = (text) => {
-    if(text=='next'){
-      if(season==''){
-        const param='s=ss&y='+year;
-        setSeason('summer')
-        fetchFashionWeeksAgenda(param);
-      }
-      if(season=='summer'){
-        const param='s=fw&y='+year;
-        setSeason('fall')
-        fetchFashionWeeksAgenda(param);
-      }
-      if(season=='fall'){
-        const years=year+1;
-        const param='s=ss&y='+years;
-        setSeason('summer')
-        setYear(years)
-        fetchFashionWeeksAgenda(param);
-      }
-    }
-    if(text=='pre'){
-      if(season==''){
-        const param='s=fw&y='+year;
-        setSeason('fall')
-        fetchFashionWeeksAgenda(param);
-      }
-      if(season=='fall'){
-        const param='s=ss&y='+year;
-        setSeason('summer')
-        fetchFashionWeeksAgenda(param);
-      }
-      if(season=='summer'){
-        const years=year-1;
-        const param='s=fw&y='+years;
-        setSeason('fall')
-        setYear(years)
-        fetchFashionWeeksAgenda(param);
-      }
-    }
-  }
+  // const Apicall = (text) => {
+  //   if(text=='next'){
+  //     if(season==''){
+  //       const param='s=ss&y='+year;
+  //       setSeason('summer')
+  //       fetchFashionWeeksAgenda(param);
+  //     }
+  //     if(season=='summer'){
+  //       const param='s=fw&y='+year;
+  //       setSeason('fall')
+  //       fetchFashionWeeksAgenda(param);
+  //     }
+  //     if(season=='fall'){
+  //       const years=year+1;
+  //       const param='s=ss&y='+years;
+  //       setSeason('summer')
+  //       setYear(years)
+  //       fetchFashionWeeksAgenda(param);
+  //     }
+  //   }
+  //   if(text=='pre'){
+  //     if(season==''){
+  //       const param='s=fw&y='+year;
+  //       setSeason('fall')
+  //       fetchFashionWeeksAgenda(param);
+  //     }
+  //     if(season=='fall'){
+  //       const param='s=ss&y='+year;
+  //       setSeason('summer')
+  //       fetchFashionWeeksAgenda(param);
+  //     }
+  //     if(season=='summer'){
+  //       const years=year-1;
+  //       const param='s=fw&y='+years;
+  //       setSeason('fall')
+  //       setYear(years)
+  //       fetchFashionWeeksAgenda(param);
+  //     }
+  //   }
+  // }
   const onRefresh = () => {
     fetchFashionWeeksAgenda();
   }
@@ -95,17 +95,17 @@ const ref = useRef(null);
             <View style={{paddingVertical: 60}}>
               <Text style={styles.gernalHeading}>{allFashionWeeksAgendas && allFashionWeeksAgendas[0]?.title}</Text>
             </View>
-            <View style={{flex:1,flexDirection:'row',marginBottom:5}}>
-              <View style={{flex:.5,paddingLeft:5,flexDirection:'row'}}>
-                <TouchableOpacity onPress={()=>{Apicall('pre')}} style={{padding:10,borderRadius:5,backgroundColor:'grey',width:70}}>
+            <View style={{flexDirection:'row',marginBottom:5,justifyContent:'space-around'}}>
+              {/* <View style={{flex:.5,paddingLeft:5,flexDirection:'row'}}> */}
+                <TouchableOpacity onPress={()=>{fetchFashionWeeksAgenda(allFashionWeeksAgendas[0].previous_season_url);}} style={{padding:10,borderRadius:5,backgroundColor:'grey',width:80}}>
                   <Text style={{color:'white'}}>Previous</Text>
                 </TouchableOpacity>
-              </View>
-              <View style={{flex:.5,paddingRight:5,justifyContent:'flex-end',flexDirection:'row'}}>
-                <TouchableOpacity onPress={()=>{Apicall('next')}} style={{padding:10,borderRadius:5,backgroundColor:'grey',width:80,alignItems:'center'}}>
+              {/* </View> */}
+              {/* <View style={{flex:.5,paddingRight:5,justifyContent:'flex-end',flexDirection:'row'}}> */}
+                <TouchableOpacity onPress={()=>{fetchFashionWeeksAgenda(allFashionWeeksAgendas[0].next_season_url);}} style={{padding:10,borderRadius:5,backgroundColor:'grey',width:80,alignItems:'center'}}>
                   <Text style={{color:'white'}}>Next</Text>
                 </TouchableOpacity>
-              </View>
+              {/* </View> */}
             </View>
             {/* <View style={styles.btnGroup}>
               <TouchableOpacity style={styles.btn}>

@@ -9,8 +9,9 @@ export const fetchFashionWeeksAgenda = (param) => async dispatch => {
   try {
     console.log('params',param)
     console.log('params',`${BASEURL}/apilfashion_week_calendar_api.php?${param}`)
+    let resp
     if(param==''){
-    const resp = await axios.get(`${BASEURL}/fashion_week_calendar_api.php`, {
+    resp = await axios.get(`${BASEURL}/fashion_week_calendar_api.php`, {
       'headers': {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -18,7 +19,8 @@ export const fetchFashionWeeksAgenda = (param) => async dispatch => {
     });
   }
   else{
-    const resp = await axios.get(`${BASEURL}/apilfashion_week_calendar_api.php?${param}`, {
+    
+    resp = await axios.get(param, {
       'headers': {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
