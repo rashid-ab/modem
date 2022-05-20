@@ -95,29 +95,29 @@ const ref = useRef(null);
             <View style={{paddingVertical: 60}}>
               <Text style={styles.gernalHeading}>{allFashionWeeksAgendas && allFashionWeeksAgendas[0]?.title}</Text>
             </View>
-            <View style={{flexDirection:'row',marginBottom:5,justifyContent:'space-around'}}>
-              {/* <View style={{flex:.5,paddingLeft:5,flexDirection:'row'}}> */}
+            {/* <View style={{flexDirection:'row',marginBottom:5,justifyContent:'space-around'}}>
+              <View style={{flex:.5,paddingLeft:5,flexDirection:'row'}}>
                 <TouchableOpacity onPress={()=>{fetchFashionWeeksAgenda(allFashionWeeksAgendas[0].previous_season_url);}} style={{padding:10,borderRadius:5,backgroundColor:'grey',width:80}}>
                   <Text style={{color:'white'}}>Previous</Text>
                 </TouchableOpacity>
-              {/* </View> */}
-              {/* <View style={{flex:.5,paddingRight:5,justifyContent:'flex-end',flexDirection:'row'}}> */}
+              </View>
+              <View style={{flex:.5,paddingRight:5,justifyContent:'flex-end',flexDirection:'row'}}>
                 <TouchableOpacity onPress={()=>{fetchFashionWeeksAgenda(allFashionWeeksAgendas[0].next_season_url);}} style={{padding:10,borderRadius:5,backgroundColor:'grey',width:80,alignItems:'center'}}>
                   <Text style={{color:'white'}}>Next</Text>
                 </TouchableOpacity>
-              {/* </View> */}
-            </View>
-            {/* <View style={styles.btnGroup}>
-              <TouchableOpacity style={styles.btn}>
+              </View>
+            </View> */}
+            <View style={styles.btnGroup}>
+              <TouchableOpacity onPress={()=>{fetchFashionWeeksAgenda(allFashionWeeksAgendas[0].previous_season_url);}} style={styles.btn}>
                 <Image source={require('../../assets/icons/arrowleft.png')} style={styles.leftArrow}/>
                 <Text style={styles.btnText}>Previous Season</Text>
               </TouchableOpacity>
               <View style={{backgroundColor: 'grey', width: 1}}></View>
-              <TouchableOpacity style={styles.btn}>
+              <TouchableOpacity onPress={()=>{fetchFashionWeeksAgenda(allFashionWeeksAgendas[0].next_season_url);}} style={styles.btn}>
                 <Text style={styles.btnText}>Next Season</Text>
                 <Image source={require('../../assets/icons/rightarrow.png')} style={styles.arrow}/>
               </TouchableOpacity>
-            </View> */}
+            </View>
             {renderMonthWiseFashionAgendas}
             {/*
             <View style={styles.borderlessMonthContainer}>

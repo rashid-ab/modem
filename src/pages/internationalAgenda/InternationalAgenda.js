@@ -70,7 +70,8 @@ const InternationalAgenda = props => {
                 <Text style={styles.gernalHeading}>International Agenda</Text>
                 <Text style={styles.gernalHeading}>{internationAgendadata && internationAgendadata[0]?.title}</Text>
               </View>
-              {/* <View style={styles.btnGroup}>
+              
+              <View style={styles.btnGroup}>
                 <TouchableOpacity style={styles.btn}>
                   <Image source={require('../../assets/icons/arrowleft.png')} style={styles.leftArrow}/>
                   <Text style={styles.btnText}>Previous Month</Text>
@@ -80,7 +81,7 @@ const InternationalAgenda = props => {
                   <Text style={styles.btnText}>Next Month</Text>
                   <Image source={require('../../assets/icons/rightarrow.png')} style={styles.arrow}/>
                 </TouchableOpacity>
-              </View> */}
+              </View>
               {renderMonthWiseFashionAgendas}
               {/* { (internationAgendadata?.length && Object.keys(internationAgendadata[0].indexes).length) ? Object.keys(internationAgendadata[0].indexes).map((index, key) => <View 
                 key={key}
