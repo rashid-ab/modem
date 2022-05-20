@@ -102,7 +102,7 @@ const ref = useRef(null);
                 </TouchableOpacity>
               </View>
               <View style={{flex:.5,paddingRight:5,justifyContent:'flex-end',flexDirection:'row'}}>
-                <TouchableOpacity onPress={()=>{Apicall('next')}} style={{padding:10,borderRadius:5,backgroundColor:'grey',width:70,alignItems:'center'}}>
+                <TouchableOpacity onPress={()=>{Apicall('next')}} style={{padding:10,borderRadius:5,backgroundColor:'grey',width:80,alignItems:'center'}}>
                   <Text style={{color:'white'}}>Next</Text>
                 </TouchableOpacity>
               </View>
