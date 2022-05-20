@@ -68,10 +68,7 @@ const SingleCategoryEvent = props => {
       {showDetails && 
       <View style={styles.showroomDetails}>
         <View style={{borderTopColor: '#b2b2b2', borderTopWidth: 1, padding: 10}}>
-          <AutoHeightWebView
-            automaticallyAdjustContentInsets={false}
-            source={{html: `<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><p style="font-size: 18px; padding-right: 50px;">${brandEventData.description.replace(/<br\s*\/?>/gi, "\n")}</p></body></html>`}}
-          />
+          
         </View>
         <View style={{padding: 10}}>
           <Text style={styles.additionalInfo}>{brandEventData?.name}</Text>
@@ -115,6 +112,10 @@ const SingleCategoryEvent = props => {
               <Image source={twitter} style={[styles.icon,{width:16}]} />
             </TouchableOpacity> : null}
           </View>
+          <AutoHeightWebView
+            automaticallyAdjustContentInsets={false}
+            source={{html: `<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><p style="font-size: 18px; padding-right: 50px;">${brandEventData.description.replace(/<br\s*\/?>/gi, "\n")}</p></body></html>`}}
+          />
         </View>
       </View>}
       <AlertModal
