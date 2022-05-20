@@ -114,7 +114,7 @@ const SingleCategoryEvent = props => {
           </View>
           <AutoHeightWebView
             automaticallyAdjustContentInsets={false}
-            source={{html: `<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><p style="font-size: 18px; padding-right: 50px;">${brandEventData.description.replace(/<br\s*\/?>/gi, "\n")}</p></body></html>`}}
+            source={{html: `<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><p style="font-size: 20px; padding-right: 50px;">${brandEventData.description.replace(/<br\s*\/?>/gi, "\n")}</p></body></html>`}}
           />
         </View>
       </View>}
