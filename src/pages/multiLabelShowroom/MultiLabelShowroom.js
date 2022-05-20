@@ -53,12 +53,13 @@ const MultiLabelShowroom = props => {
     totalMultiLabelShowrooms?.length && Object.keys(totalMultiLabelShowrooms[0]?.indexes) && Object.keys(totalMultiLabelShowrooms[0].indexes).map(key => {
       const arr = [];
       totalMultiLabelShowrooms[0].indexes[key].forEach(d => {
+        console.log('comments',d.comments.replace(/<[^>]+>/g, ''))
         brandNames.forEach(b => {
           const start = moment(d.start_date).format('YYYY-MM-DD');
           const end = moment(d.end_date).format('YYYY-MM-DD');
           const compare = moment(selectedDate);
-          if(brandNames.length && selectedDate && compare.isSameOrAfter(start) && compare.isSameOrBefore(end) && b === d.name) arr.push(d);
-          if(brandNames.length && !selectedDate && b === d.name) arr.push(d);
+          if(brandNames.length && selectedDate && compare.isSameOrAfter(start) && compare.isSameOrBefore(end) && d.comments.replace(/<[^>]+>/g, '').match(b)) arr.push(d);
+          if(brandNames.length && !selectedDate && d.comments.replace(/<[^>]+>/g, '').match(b)) arr.push(d);
         })
 
         if(selectedDate && !brandNames.length) {
