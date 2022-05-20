@@ -42,7 +42,7 @@ const MonthWiseFashionWeekAgenda = props => {
         </View>
       </View> : null}
       {fashionWeekAgenda.length && month !== 'digital' ? <View style={styles.monthWiseContainer}>
-        <Text style={[styles.showTitle, styles.monthTitle]}>{month}</Text>
+        {/* <Text style={[styles.showTitle, styles.monthTitle]}>{month}</Text> */}
         <View style={[styles.showsContainer, {justifyContent: fashionWeekAgenda.length > 1 ? 'space-evenly' : 'flex-start', paddingHorizontal: fashionWeekAgenda.length > 1 ? 0 : 15}]}>
           {fashionWeekAgenda.length ? fashionWeekAgenda.map((agenda, key) => <View key={key} style={styles.singleShow}>
             <Text style={styles.durationDate}>{agenda?.dates ?  agenda.dates : 'no date available'}</Text>

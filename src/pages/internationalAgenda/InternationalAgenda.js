@@ -1,32 +1,34 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef,useCallback } from 'react'
 import PropTypes, { object } from 'prop-types'
 import {
-  StyleSheet, Text, View, StatusBar, ScrollView, ActivityIndicator, RefreshControl, Image, TouchableOpacity, Pressable
+  StyleSheet, Text, View, StatusBar, ScrollView, ActivityIndicator,Dimensions, RefreshControl, Image, TouchableOpacity, Pressable
 } from 'react-native'
 import { connect } from 'react-redux'
 import AgendaByCountry from '../../components/agendaBycountry'
 import { fetchInternationAgenda } from '../../redux/actions/agendasActions'
 import MonthWiseFashionWeekAgenda from '../../components/monthWiseFashionWeekAgenda'
-
+import Carousel from 'react-native-snap-carousel'
 const InternationalAgenda = props => {
   const { loading, fetchInternationAgenda, internationAgendadata, navigation } = props;
   const [refreshing, setRefreshing] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollRef = useRef();
+  const ref = useRef(null);
   const [showDetailViewHeight, setShowDetailViewHeight] = useState();
+  const [carouselItems, setCarouselItems] = useState(internationAgendadata && internationAgendadata[0].banners);
   useEffect(() => {
-    fetchInternationAgenda()
+    fetchInternationAgenda('')
+
   }, [])
   
   const onRefresh = () => {
-    fetchInternationAgenda()
+    fetchInternationAgenda('')
   }
   console.log('internationAgendadata',internationAgendadata)
   const updateIndex = (index) => {
     if (selectedIndex === index) setSelectedIndex(0);
     else setSelectedIndex(index)
   }
-
   const renderCountryView = <View>
     <AgendaByCountry/>
   </View>
@@ -37,6 +39,16 @@ const InternationalAgenda = props => {
   navigation={navigation}
 />) : <Text style={styles.noEvents}>There are no agendas in this category.</Text> 
 
+const windowWidth = Dimensions.get('window').width;
+const renderBannerCarousel = useCallback(({ item, key }) => (
+  <View style={styles.bottomHorizontalBanners}>
+    <TouchableOpacity 
+        onPress={() => item?.link && Linking.openURL(item.link)}
+      > 
+      <Image resizeMode='contain' source={item?.path_image ? {uri: item.path_image} : require('../../assets/img/home-v2-dummy1.png')} style={[styles.postImage, {minWidth: '100%', width: windowWidth > 385 ? 350 : 320 }]}/>
+    </TouchableOpacity>
+  </View>
+), []);
   return(
     <View style={{flex: 1, backgroundColor: 'white'}}>
     {loading ? <View style={styles.centerMe}><ActivityIndicator size="large" color= "black"/></View>
@@ -72,12 +84,12 @@ const InternationalAgenda = props => {
               </View>
               
               <View style={styles.btnGroup}>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity onPress={()=>{fetchInternationAgenda(internationAgendadata[0].previous_month);}} style={styles.btn}>
                   <Image source={require('../../assets/icons/arrowleft.png')} style={styles.leftArrow}/>
                   <Text style={styles.btnText}>Previous Month</Text>
                 </TouchableOpacity>
                 <View style={{backgroundColor: 'grey', width: 1}}></View>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity onPress={()=>{fetchInternationAgenda(internationAgendadata[0].next_month);}} style={styles.btn}>
                   <Text style={styles.btnText}>Next Month</Text>
                   <Image source={require('../../assets/icons/rightarrow.png')} style={styles.arrow}/>
                 </TouchableOpacity>
@@ -102,6 +114,21 @@ const InternationalAgenda = props => {
               </View>) : <Text style={styles.noEvents}>No data available</Text>} */}
             </View>
             }
+            <View style={{backgroundColor: '#f2f2f2'}}>
+              <Carousel
+                hasParallaxImages={true}
+                layout={'default'}
+                loop
+                autoplayInterval={7000}
+                useNativeDriver
+                autoplay={true}
+                ref={ref}
+                data={carouselItems}
+                sliderWidth={windowWidth}
+                itemWidth={windowWidth - 50}
+                renderItem={renderBannerCarousel}
+              />
+            </View>
           </ScrollView>
         </View>
       </View> 
@@ -148,6 +175,17 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     flexWrap: 'wrap',
     marginHorizontal: 8
+  },
+  bottomHorizontalBanners: {
+    height: 230,
+    maxHeight: 230,
+    marginLeft: Platform.OS === 'ios' ? '-1%' : 0,
+    // backgroundColor: '#f2f2f2'
+  },
+  postImage: {
+    width: 350,
+    // marginRight: 12,
+    height: 230,
   },
   cityName: {
     fontSize: 26,

@@ -19,7 +19,7 @@ export const fetchFashionWeeksAgenda = (param) => async dispatch => {
     });
   }
   else{
-    
+
     resp = await axios.get(param, {
       'headers': {
         'Content-Type': 'application/json',
@@ -108,17 +108,28 @@ export const fetchSalesCompaignsTradeShows = () => async dispatch => {
   }
 }
 
-export const fetchInternationAgenda = () =>  async dispatch => {
+export const fetchInternationAgenda = (param) =>  async dispatch => {
   try {
     dispatch({
       type: FETCH_INTERNATION_AGENDA_SENT
     })
-      const resp = await axios.get(`${BASEURL}/tradeshows_calendar_api.php`, {
+    let resp=''
+    if(param==''){
+       resp = await axios.get(`${BASEURL}/tradeshows_calendar_api.php`, {
         'headers': {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         }
       });
+    }
+    else{
+       resp = await axios.get(`${BASEURL}/tradeshows_calendar_api.php?m=${param}`, {
+        'headers': {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        }
+      });
+    }
     dispatch({
       type: FETCH_INTERNATION_AGENDA_SUCCESSFUL,
       payload: resp.data
