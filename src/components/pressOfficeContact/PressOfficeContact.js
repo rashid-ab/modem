@@ -22,6 +22,7 @@ const PressOfficeContact = props => {
   const [showModal, setShowModal] = useState(false);
   const [webModal, setWebModal] = useState(false);
   const [spinValue, setSpinValue] = useState(new Animated.Value(0))
+  console.log('user',user)
   useEffect(() => {
     Animated.loop(
       Animated.timing(spinValue, {
@@ -57,15 +58,18 @@ const PressOfficeContact = props => {
   {user?.contact2_mobile ? <TouchableOpacity onPress={() => Linking.openURL(`tel://${user.contact2_mobile}`)}>
     <Text style={[styles.contactText, styles.marginBottomExtra]}>T : {user.contact2_mobile}</Text>
   </TouchableOpacity> : null}
-  {user?.phone ? <TouchableOpacity onPress={() => Linking.openURL(`tel://${user.phone}`)}>
-    <Text style={[styles.contactText, styles.marginBottomExtra]}>T : {user.phone}</Text>
+  {user?.contact1_phone ? <TouchableOpacity onPress={() => Linking.openURL(`tel://${user.contact1_phone}`)}>
+    <Text style={[styles.contactText, styles.marginBottomExtra]}>T : {user.contact1_phone}</Text>
   </TouchableOpacity> : null}
-  {user?.email ? <TouchableOpacity style={styles.rowCenter} onPress={() => Linking.openURL(`mailto:${user.email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
+  {user?.contact2_phone ? <TouchableOpacity onPress={() => Linking.openURL(`tel://${user.contact2_phone}`)}>
+    <Text style={[styles.contactText, styles.marginBottomExtra]}>T : {user.contact2_phone}</Text>
+  </TouchableOpacity> : null}
+  {user?.contact1_email ? <TouchableOpacity style={styles.rowCenter} onPress={() => Linking.openURL(`mailto:${user.contact1_email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
     <Text style={styles.contactText}>{user.name}</Text>
     <Image source={Mail} style={styles.mail} />
   </TouchableOpacity> : null}
   {user?.contact2_email ? <TouchableOpacity style={styles.rowCenter} onPress={() => Linking.openURL(`mailto:${user.contact2_email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
-    <Text style={styles.contactText}>{user.contact2_name}</Text>
+    <Text style={styles.contactText}>{user.name}</Text>
     <Image source={Mail} style={styles.mail} />
   </TouchableOpacity> : null}
   <View style={styles.padding10}>

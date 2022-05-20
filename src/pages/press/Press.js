@@ -29,23 +29,33 @@ const Shows = props => {
           'Accept': 'application/json',
         }
       });
-      setOffice(Array.isArray(totalPressContacts[0].indexes))
+      const resp = await axios.get(`${BASEURL}/fashion_weeks_press_contacts_api.php?id=${id}&type=${0}`, {
+        'headers': {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        }
+      });
+      setOffice(Array.isArray(resp.data[0].indexes))
       setContact(Array.isArray(res.data[0].indexes))
       setPresscontact(res.data)
       if(Array.isArray(totalPressContacts[0].indexes) && Array.isArray(res.data[0].indexes)){
+        console.log('1')
         return setSelectedIndex(0);
       }
       if(!Array.isArray(totalPressContacts[0].indexes)){
+        console.log('2')
         setSelectedIndex(0);
         console.log('totalPressContacts',totalPressContacts)
         return;
       }
       if(Array.isArray(totalPressContacts[0].indexes) && !Array.isArray(res.data[0].indexes)){
+        console.log('3')
         setSelectedIndex(1);
         fetchPressContacts(1, id);
         return;
       }
       if(!Array.isArray(res.data[0].indexes)){
+        console.log('4')
         setSelectedIndex(1);
         fetchPressContacts(1, id);
         return;
@@ -110,7 +120,7 @@ const Shows = props => {
                 <Text style={selectedIndex === 0 && !office ? styles.pressTabBtnActive : styles.pressTabBtn}>press offices</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() =>presscontact.length && !contact? updateIndex(1):''}>
-                <Text style={selectedIndex === 1 && presscontact.length && !contact ? styles.pressTabBtnActive : styles.pressTabBtn}>press contacts</Text>
+                <Text style={selectedIndex === 1 &&!contact ? styles.pressTabBtnActive : styles.pressTabBtn}>press contacts</Text>
               </TouchableOpacity>
             </ScrollView>
             <ScrollView style={{flex: 1, paddingHorizontal: 8}} contentContainerStyle={{flexGrow: 1}} ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
