@@ -23,6 +23,7 @@ const MultiLabelStores = props => {
   const filteredCityNames = (city) => {
     setSelectedCities(selectedCitites.filter(c => c !== city));
   };
+  //  console.log('totalMultiLabelStores',totalMultiLabelStores)
   useEffect(() => {
     const cityName = allCities.find(city => city.fashionweek_id === id)?.city;
     fetchMultiLabelStores(id, cityName);
@@ -281,7 +282,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   alphaCharacter: {
-    color: '#e6e6e6',
+    color: '#999696',
     fontSize: 16,
   },
   filteredView: {

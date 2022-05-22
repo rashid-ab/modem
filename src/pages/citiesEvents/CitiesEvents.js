@@ -20,13 +20,14 @@ const CitiesEvents = props => {
   const windowHeight = Dimensions.get('window').height;
   const id = route?.params?.cityEvent?.fashionweek_id;
   const [showDetailViewHeight, setShowDetailViewHeight] = useState();
-console.log('brandEventsData',brandEventsData)
   useEffect(() => {
     fetchBrandEvents(id)
   }, [id]);
   const data =  filteredEvents[0]?.events;
+  console.log('data',data)
   const scrollRef = useRef();
   const showLetters = filteredEvents?.length && data?.length ? Object.keys(data).map(key => <TouchableOpacity onPress={() => {
+    
     scrollRef.current.scrollTo({
       y: alphaPos[key],
       animated: true
@@ -90,7 +91,7 @@ console.log('brandEventsData',brandEventsData)
           }}
           style={{position: 'absolute', zIndex: 1, right: 5, elevation: 99, flex: 1, top: (((windowHeight - 118) - lettersViewHeight) / 2) || 0}}
         >
-          {showLetters}
+          {/* {showLetters} */}
         </View>
         <StatusBar barStyle="dark-content"/>
         <View style={styles.rootContainer}>

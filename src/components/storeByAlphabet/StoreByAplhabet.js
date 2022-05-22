@@ -22,6 +22,7 @@ const StoreByAplhabet = props => {
   const [showModal, setShowModal] = useState(false);
   const [webModal, setWebModal] = useState(false);
   const [spinValue, setSpinValue] = useState(new Animated.Value(0))
+  console.log('storeDetails',store)
   useEffect(() => {
     Animated.loop(
       Animated.timing(spinValue, {
@@ -36,10 +37,8 @@ const StoreByAplhabet = props => {
     inputRange: [0, 1],
     outputRange: ["0deg", "360deg"],
   })
-  const renderStoreDetails = store.boutique.map((shop, key) => <View 
-    key={key}
-    style={styles.showroomDetails}
-  >
+  const renderStoreDetails = store.boutique.map((shop, key) => 
+    <>
     <View style={{
       flexDirection: 'row',
       marginTop: 5
@@ -52,7 +51,6 @@ const StoreByAplhabet = props => {
         <Image source={Pin} style={styles.pinIcon} />
       </TouchableOpacity> : <></>}
     </View>
-    {/* <Text style={styles.additionalInfo}>{shop.name}</Text> */}
     <Text style={styles.additionalInfo}>{shop.address}</Text>
     { shop.opening_hours_en ? <View style={{paddingTop: 5}}>
       <Text style={styles.additionalInfo}>{shop.opening_hours_en.replace('<br />', '\n')}</Text>
@@ -81,8 +79,8 @@ const StoreByAplhabet = props => {
               <Image source={twitter} style={[styles.icon,{width:16}]} />
             </TouchableOpacity> : null}
           </View>
-    </View>
-  </View>)  
+  </View>
+  </>)  
 
   return(
     <View style={styles.container}>
@@ -95,7 +93,10 @@ const StoreByAplhabet = props => {
           </TouchableOpacity>
         </Pressable>
       </View>
-      {storeDetails && renderStoreDetails}
+      {storeDetails &&
+      <View style={styles.showroomDetails}>
+        {storeDetails && renderStoreDetails}
+      </View>}
       <AlertModal
         body={`"My Modem – the personal concierge" will be launched soon.You will be able to create your personalized APP here by selecting information
   according to your interests.`}
