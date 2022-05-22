@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.45,
     shadowRadius: 16,
-    marginTop:Platform.OS === 'ios'?20:0
+    marginTop:Platform.OS == 'ios'?5:0
   },
   postImage: {
     width: 350,
