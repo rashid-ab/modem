@@ -54,7 +54,7 @@ const Home = props => {
       hitSlop={{ top: 0, right: 15, bottom: 15, left: 15 }}
     >
       <Image
-        source={require('../../assets/icons/cross.png')}
+        source={require('../../assets/icons/closewhite.png')}
         style={{ tintColor: '#fff', width: '40%', height: '40%' }}
       />
     </TouchableOpacity>

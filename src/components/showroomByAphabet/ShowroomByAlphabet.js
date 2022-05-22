@@ -28,6 +28,8 @@ const ShowroomByAlphabet = props => {
     setOpenedShowroom(singleShowroom?.contact1_email)
   }
   console.log('singleShowroom',singleShowroom)
+  let datess=singleShowroom?.dates.charAt(0).toUpperCase()+singleShowroom?.dates.slice(1);
+  let dates = datess.replace("<br />","\n")
   useEffect(() => {
     Animated.loop(
       Animated.timing(spinValue, {
@@ -92,6 +94,7 @@ const ShowroomByAlphabet = props => {
           {/* <Text style={styles.additionalInfo}>{singleShowroom?.name.replace(/&amp;\s*\/?/mg, ' & ')}</Text> */}
           <Text style={styles.additionalInfo}>{singleShowroom?.address.replace(/<br\s*\/?>/gi, "\n")}</Text>
         </View>
+        
         <View style={{paddingVertical: 10}}>
           {singleShowroom?.contact1_email ? 
           <TouchableOpacity style={styles.row} onPress={() => Linking.openURL(`mailto:${singleShowroom.contact1_email}?subject=Modem&body=We are your Fashion, Art and Design International Magazine`)}>
@@ -160,6 +163,9 @@ const ShowroomByAlphabet = props => {
           {singleShowroom?.twitter ? <TouchableOpacity style={styles.infoIconContainer} onPress={() => singleShowroom?.twitter && Linking.openURL(singleShowroom?.twitter)}>
             <Image source={twitter} style={[styles.icon,{width:16}]} />
           </TouchableOpacity> : null}
+        </View>
+        <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
+          {singleShowroom?.dates ? <Text style={styles.additionalInfo}>{dates}{'\n'}</Text> : null}
         </View>
         {/* {singleShowroom?.comments ? <View style={{borderTopColor: '#b2b2b2', borderTopWidth: 1, padding: 10}}>
           <AutoHeightWebView
