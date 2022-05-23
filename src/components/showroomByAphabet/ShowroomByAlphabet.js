@@ -27,7 +27,7 @@ const ShowroomByAlphabet = props => {
     setShowDetails(!showDetails);
     setOpenedShowroom(singleShowroom?.contact1_email)
   }
-  console.log('singleShowroom',singleShowroom)
+  // console.log('singleShowroom',singleShowroom)
   let datess=singleShowroom?.dates.charAt(0).toUpperCase()+singleShowroom?.dates.slice(1);
   let dates = datess.replace("<br />","\n")
   useEffect(() => {

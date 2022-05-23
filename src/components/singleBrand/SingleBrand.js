@@ -7,7 +7,7 @@ import { CheckBox } from 'react-native-elements'
 const SingleBrand = props => {
   const { showroom, setBrandNames, brandNames } = props;
   const [checked, setChecked] = useState(brandNames.includes(showroom?.name) ? true : false);
-  
+  console.log('brandNamesbrandNames',brandNames)
   const handleBrands = (name) => {
     if(checked) {
       setBrandNames(brandNames.filter(b => b !== name));

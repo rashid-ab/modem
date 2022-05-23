@@ -27,7 +27,7 @@ const MultiLabelShowroom = props => {
   const scrollRef = useRef();
   const id = route?.params?.cityEvent?.fashionweek_id;
   const other = route?.params?.other;
-  console.log('totalMultiLabelShowroomsbybrands',totalMultiLabelShowrooms)
+  console.log('totalMultiLabelShowroomsbybrands',id)
 
   const filteredBrandNames = (brand) => {
     setBrandNames(brandNames.filter(b => b !== brand));
@@ -53,7 +53,6 @@ const MultiLabelShowroom = props => {
     totalMultiLabelShowrooms?.length && Object.keys(totalMultiLabelShowrooms[0]?.indexes) && Object.keys(totalMultiLabelShowrooms[0].indexes).map(key => {
       const arr = [];
       totalMultiLabelShowrooms[0].indexes[key].forEach(d => {
-        console.log('comments',d.comments.replace(/<[^>]+>/g, ''))
         brandNames.forEach(b => {
           const start = moment(d.start_date).format('YYYY-MM-DD');
           const end = moment(d.end_date).format('YYYY-MM-DD');

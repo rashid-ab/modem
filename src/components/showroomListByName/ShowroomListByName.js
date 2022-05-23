@@ -4,7 +4,6 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import SingleBrand from '../singleBrand'
-
 const BrowseByAlphabet = props => {
   const { multiLabelShowrooms, letter, alphaPos, setAlphaPos, setBrandNames, brandNames, removedBrand } = props;
   const renderSingleBrand = multiLabelShowrooms?.map((showroom, key) => <SingleBrand
@@ -14,6 +13,7 @@ const BrowseByAlphabet = props => {
     setBrandNames={setBrandNames}
     removedBrand={removedBrand}
   />)
+  console.log('brandNames',brandNames)
 
   return(
       <View 
@@ -27,7 +27,7 @@ const BrowseByAlphabet = props => {
       }}
       >
         <Text style={styles.time}>{letter}</Text> 
-        <View style={{width: '74%'}}>
+        <View style={{width: '74%'}}>   
           {renderSingleBrand}
         </View>
       </View>

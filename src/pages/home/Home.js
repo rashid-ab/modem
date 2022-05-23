@@ -36,7 +36,7 @@ const Home = props => {
   const iosCalc = iosStatusBarHeight + 108
   const windowHeight = Dimensions.get('window').height;
   const modalHeight = windowHeight - (Platform.OS === 'ios' ? iosCalc : 121);
-
+console.log('citiesEvents',citiesEvents)
 
   const renderHeader = () => (
     <TouchableOpacity

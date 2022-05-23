@@ -54,10 +54,10 @@ const TabNavigator = () => {
           height: Platform.OS === 'ios' ? 80 : 50,
           backgroundColor: colors.white,
       }}}
-      screenOptions={({ route }) => ({
+      screenOptions={({ route,navigation }) => ({
         // eslint-disable-next-line react/prop-types
         tabBarIcon: ({ focused }) => {
-          console.log('focues',focused)
+          console.log('navigation',navigation)
           switch (route.name) {
             case 'Default':
               return (
@@ -83,7 +83,7 @@ const TabNavigator = () => {
               )
             case 'Agenda':
               return (
-                <View style={{marginLeft: '-20%', alignItems: 'center'}}>
+                <TouchableOpacity onPress={()=>{navigation.navigate('Agenda')}} style={{marginLeft: '-20%', alignItems: 'center'}}>
                   <Image source={Agenda} style={styles.agenda}/>
                   <TextInput editable={false} style={{
                     color: 'white',
@@ -96,7 +96,7 @@ const TabNavigator = () => {
                     paddingBottom: 1,
                     textTransform: 'uppercase'
                   }}>Agenda</TextInput>
-                </View>
+                </TouchableOpacity>
               )
             case 'Connect':
               return (
@@ -156,7 +156,7 @@ const TabNavigator = () => {
         },
       })}
       // initialRouteName="Welcome"
-      swipeEnabled={false}
+      swipeEnabled={true}
       tabBarOptions={{
         showLabel: false,
         style: {

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {
-  StyleSheet, TouchableOpacity, View, Text, Image, Linking, Pressable, Platform
+  StyleSheet, TouchableOpacity, View, Text, Image, Linking, Pressable,Animated, Easing
 } from 'react-native'
 import User from '../../assets/icons/addContact.png'
 import UserAdded from '../../assets/icons/contact.png'
@@ -23,7 +23,21 @@ const BrandsShowroomByAlphabet = props => {
   const [showDetails, setShowDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [webModal, setWebModal] = useState(false);
-
+  const [spinValue, setSpinValue] = useState(new Animated.Value(0))
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(spinValue, {
+        toValue: 1,
+        duration: 3000,
+        easing: Easing.linear,
+        useNativeDriver: true
+      })
+    ).start()
+  }, [])
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["0deg", "360deg"],
+  })
   return(
     <View style={styles.container}>
       <View style={{
@@ -44,7 +58,7 @@ const BrandsShowroomByAlphabet = props => {
       <View style={styles.user}>
         
         <Pressable onPress={() => setShowDetails(!showDetails)} style={styles.nameContainer}>
-          {brandShowroomData?.name ? <Image source={Star} style={styles.star}/> : <View style={styles.star}></View>}
+          {brandShowroomData?.name ?  <Animated.Image source={Star} style={[styles.star,{transform: [{ rotate: spin }]}]}/> : <View style={styles.star}></View>}
           <Text style={styles.contactName}>
             {brandShowroomData?.name.replace(/&amp;\s*\/?/mg, '& ')}
             <TouchableOpacity onPress={() => setShowModal(true)}>
