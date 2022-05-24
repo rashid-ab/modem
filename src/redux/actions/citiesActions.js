@@ -129,6 +129,7 @@ export const fetchMultiLabelShowrooms = (id) => async dispatch => {
         'Accept': 'application/json',
       }
     });
+    if(id){
     const res = await axios.get(`${BASEURL}/fashion_weeks_multilabel_showrooms_brands_api.php?id=${id?id:'1144'}`, {
       'headers': {
         'Content-Type': 'application/json',
@@ -139,6 +140,20 @@ export const fetchMultiLabelShowrooms = (id) => async dispatch => {
       type: FETCH_MULTILABEL_SHOWROOMS_BYBRANDS_SUCCESSFUL,
       payload: res.data
     })
+  }
+  else{
+    const ress = await axios.get(`${BASEURL}/sales_campaigns_showrooms_brands_api.php`, {
+      'headers': {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    });
+    dispatch({
+      type: FETCH_MULTILABEL_SHOWROOMS_BYBRANDS_SUCCESSFUL,
+      payload: ress.data
+    })
+  }
+    
     dispatch({
       type: FETCH_MULTILABEL_SHOWROOMS_SUCCESSFUL,
       payload: resp.data

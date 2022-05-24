@@ -85,8 +85,12 @@ const ShowroomByAlphabet = props => {
             <Image source={Pin} style={styles.pinIcon} />
           </TouchableOpacity> : null }
         </View>
+        
         {/* <Text style={styles.eventDuration}>{singleShowroom?.dates.replace(/<br\s*\/?>/gi, "\n")}</Text> */}
       </View>
+      <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
+          {singleShowroom?.dates ? <Text style={styles.additionalInfo}>{dates}{'\n'}</Text> : null}
+        </View>
       {showDetails &&
       <View style={styles.showroomDetails}>
         <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
@@ -164,9 +168,7 @@ const ShowroomByAlphabet = props => {
             <Image source={twitter} style={[styles.icon,{width:16}]} />
           </TouchableOpacity> : null}
         </View>
-        <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
-          {singleShowroom?.dates ? <Text style={styles.additionalInfo}>{dates}{'\n'}</Text> : null}
-        </View>
+        
         {/* {singleShowroom?.comments ? <View style={{borderTopColor: '#b2b2b2', borderTopWidth: 1, padding: 10}}>
           <AutoHeightWebView
             automaticallyAdjustContentInsets={false}
