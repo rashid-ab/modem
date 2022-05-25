@@ -13,53 +13,53 @@ const FashionWeeksAgenda = props => {
   const [season, setSeason] = useState('');
   const [year, setYear] = useState(2022);
   const scrollRef = useRef();
-  const [carouselItems, setCarouselItems] = useState(allFashionWeeksAgendas.length && allFashionWeeksAgendas[0]?.banners);
-console.log('allFashionWeeksAgendas',allFashionWeeksAgendas)
-const windowWidth = Dimensions.get('window').width;
-const ref = useRef(null);
-  useEffect(() => {
-    fetchFashionWeeksAgenda('');
-  }, [])
-  // const Apicall = (text) => {
-  //   if(text=='next'){
-  //     if(season==''){
-  //       const param='s=ss&y='+year;
-  //       setSeason('summer')
-  //       fetchFashionWeeksAgenda(param);
-  //     }
-  //     if(season=='summer'){
-  //       const param='s=fw&y='+year;
-  //       setSeason('fall')
-  //       fetchFashionWeeksAgenda(param);
-  //     }
-  //     if(season=='fall'){
-  //       const years=year+1;
-  //       const param='s=ss&y='+years;
-  //       setSeason('summer')
-  //       setYear(years)
-  //       fetchFashionWeeksAgenda(param);
-  //     }
-  //   }
-  //   if(text=='pre'){
-  //     if(season==''){
-  //       const param='s=fw&y='+year;
-  //       setSeason('fall')
-  //       fetchFashionWeeksAgenda(param);
-  //     }
-  //     if(season=='fall'){
-  //       const param='s=ss&y='+year;
-  //       setSeason('summer')
-  //       fetchFashionWeeksAgenda(param);
-  //     }
-  //     if(season=='summer'){
-  //       const years=year-1;
-  //       const param='s=fw&y='+years;
-  //       setSeason('fall')
-  //       setYear(years)
-  //       fetchFashionWeeksAgenda(param);
-  //     }
-  //   }
-  // }
+  const [carouselItems , setCarouselItems] = useState(allFashionWeeksAgendas.length && allFashionWeeksAgendas[0]?.banners);
+  console.log('allFashionWeeksAgendas',allFashionWeeksAgendas)
+  const windowWidth = Dimensions.get('window').width;
+  const ref = useRef(null);
+    useEffect(() => {
+      fetchFashionWeeksAgenda('');
+    }, [])
+    // const Apicall = (text) => {
+    //   if(text=='next'){
+    //     if(season==''){
+    //       const param='s=ss&y='+year;
+    //       setSeason('summer')
+    //       fetchFashionWeeksAgenda(param);
+    //     }
+    //     if(season=='summer'){
+    //       const param='s=fw&y='+year;
+    //       setSeason('fall')
+    //       fetchFashionWeeksAgenda(param);
+    //     }
+    //     if(season=='fall'){
+    //       const years=year+1;
+    //       const param='s=ss&y='+years;
+    //       setSeason('summer')
+    //       setYear(years)
+    //       fetchFashionWeeksAgenda(param);
+    //     }
+    //   }
+    //   if(text=='pre'){
+    //     if(season==''){
+    //       const param='s=fw&y='+year;
+    //       setSeason('fall')
+    //       fetchFashionWeeksAgenda(param);
+    //     }
+    //     if(season=='fall'){
+    //       const param='s=ss&y='+year;
+    //       setSeason('summer')
+    //       fetchFashionWeeksAgenda(param);
+    //     }
+    //     if(season=='summer'){
+    //       const years=year-1;
+    //       const param='s=fw&y='+years;
+    //       setSeason('fall')
+    //       setYear(years)
+    //       fetchFashionWeeksAgenda(param);
+    //     }
+    //   }
+    // }
   const onRefresh = () => {
     fetchFashionWeeksAgenda();
   }

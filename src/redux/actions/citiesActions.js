@@ -50,6 +50,7 @@ export const fetchFashionWeekShows = id => async dispatch => {
 }
 
 export const fetchFashionShowsByAlpha = id => async dispatch => {
+  console.log('idd',id)
   dispatch({
     type: FETCH_FAHSION_SHOWS_BY_ALPHA_REQUEST_SENT
   })
@@ -236,6 +237,7 @@ export const fetchBrandEvents= (id) => async dispatch => {
   }
 }
 export const fetchCitiesResturants= (id) => async dispatch => {
+  
   dispatch({
     type: FETCH_RESTURANTS_REQUEST_SENT
   })
@@ -246,12 +248,12 @@ export const fetchCitiesResturants= (id) => async dispatch => {
         'Accept': 'application/json',
       }
     });
+    // if(Array)
     dispatch({
       type: FETCH_RESTURANTS_REQUEST_SUCCESSFUL,
       payload: resp.data
     })
   } catch(err) {
-    console.log(err)
     dispatch({
       type: FETCH_RESTURANTS_REQUEST_FAILURE,
       message: (err.response && err.response.data.message) ? err.response.data.message : err.message

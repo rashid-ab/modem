@@ -15,10 +15,11 @@ const Shows = props => {
   const [alphaPos, setAlphaPos] = useState({});
   const [lettersViewHeight, setLettersViewHeight] = useState();
   const scrollRef = useRef();
+  console.log('fashionShowsByAlpha.length',route?.params?.fashionweekId ? route?.params?.fashionweekId : route?.params?.cityEvent?.fashionweek_id )
   useEffect(() => {
-    fetchFashionShowsByAlpha(route?.params?.cityEvent?.fashionweek_id);
+    fetchFashionShowsByAlpha(route?.params?.fashionweekId ? route?.params?.fashionweekId : route?.params?.cityEvent?.fashionweek_id);
   }, [changeView])
-
+ 
   const windowHeight = Dimensions.get('window').height;
   const showLetters = fashionShowsByAlpha.length ? Object.keys(fashionShowsByAlpha[0].indexes).map(key => <TouchableOpacity onPress={() => {
     scrollRef.current.scrollTo({
