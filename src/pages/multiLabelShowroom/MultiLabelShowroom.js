@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
     tintColor: '#fff'
   },
   alphaCharacter: {
-    color: '#e6e6e6',
+    color: '#999696',
     fontSize: 16,
   },
   filteredView: {
