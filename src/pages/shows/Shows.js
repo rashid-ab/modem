@@ -11,7 +11,7 @@ import { fetchFashionShowsByAlpha } from '../../redux/actions/citiesActions'
 
 const Shows = props => {
   const { route, fashionShows, fetchFashionShowsByAlpha, fashionShowsByAlpha, loading, navigation } = props;
-  const [changeView, setChangeView] = useState(false);
+  const [changeView, setChangeView] = useState(route?.params?.fashionweekId ? route?.params?.fashionweekId+1 : route?.params?.cityEvent?.fashionweek_id+1);
   const [alphaPos, setAlphaPos] = useState({});
   const [lettersViewHeight, setLettersViewHeight] = useState();
   const scrollRef = useRef();
