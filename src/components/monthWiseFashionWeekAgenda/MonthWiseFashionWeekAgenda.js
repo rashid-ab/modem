@@ -18,11 +18,11 @@ const compaignList = {
     link: 'AgendaTradeShows'
   }
 }
-const reloaded = useSelector((state)=>state.cities.reload)
-console.log('reload',reloaded)
+
 const MonthWiseFashionWeekAgenda = props => {
   const { fashionWeekAgenda, month, navigation } = props;
-  console.log('fashionWeekAgendaasasasa',fashionWeekAgenda)
+  const reloaded = useSelector((state)=>state.cities.reload)
+console.log('reload',reloaded)
   return(
     <>
       {fashionWeekAgenda.length && month === 'digital' ? <View style={styles.monthWiseContainer}>
