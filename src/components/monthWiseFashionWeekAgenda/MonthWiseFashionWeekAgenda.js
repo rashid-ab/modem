@@ -20,9 +20,10 @@ const compaignList = {
 }
 
 const MonthWiseFashionWeekAgenda = props => {
-  const { fashionWeekAgenda, month, navigation } = props;
-  const reloaded = useSelector((state)=>state.cities.reload)
-console.log('reload',reloaded)
+  const { fashionWeekAgenda, month,statedata, navigation } = props;
+  const reloaded = useSelector((state)=>state.app.reloaddata)
+  reload(true);
+console.log('reloaded',statedata)
   return(
     <>
       {fashionWeekAgenda.length && month === 'digital' ? <View style={styles.monthWiseContainer}>
@@ -60,6 +61,7 @@ console.log('reload',reloaded)
 
 const mapStateToProps = state => {
   return {
+    statedata: state.cities.statedata
   }
 }
 

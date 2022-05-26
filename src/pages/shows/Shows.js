@@ -4,7 +4,7 @@ import {
   StyleSheet, Text, View, StatusBar, ScrollView, Dimensions, ActivityIndicator
 } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { connect } from 'react-redux'
+import { connect,useSelector } from 'react-redux'
 import BrowseByAlphabet from '../../components/browseByAlphabet'
 import BrowseByDate from '../../components/browseByDate/BrowseByDate'
 import { fetchFashionShowsByAlpha } from '../../redux/actions/citiesActions'
@@ -18,7 +18,7 @@ const Shows = props => {
   console.log('fashionShowsByAlpha.length',changeView)
   useEffect(() => {
     fetchFashionShowsByAlpha(route?.params?.fashionweekId ? route?.params?.fashionweekId : route?.params?.cityEvent?.fashionweek_id);
-  }, [changeView])
+  }, [route?.params?.fashionweekId ? route?.params?.fashionweekId+1 : route?.params?.cityEvent?.fashionweek_id+1])
  
   const windowHeight = Dimensions.get('window').height;
   const showLetters = fashionShowsByAlpha.length ? Object.keys(fashionShowsByAlpha[0].indexes).map(key => <TouchableOpacity onPress={() => {
