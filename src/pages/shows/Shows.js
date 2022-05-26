@@ -15,7 +15,7 @@ const Shows = props => {
   const [alphaPos, setAlphaPos] = useState({});
   const [lettersViewHeight, setLettersViewHeight] = useState();
   const scrollRef = useRef();
-  console.log('fashionShowsByAlpha.length',route?.params?.fashionweekId ? route?.params?.fashionweekId : route?.params?.cityEvent?.fashionweek_id )
+  console.log('fashionShowsByAlpha.length',changeView)
   useEffect(() => {
     fetchFashionShowsByAlpha(route?.params?.fashionweekId ? route?.params?.fashionweekId : route?.params?.cityEvent?.fashionweek_id);
   }, [changeView])
