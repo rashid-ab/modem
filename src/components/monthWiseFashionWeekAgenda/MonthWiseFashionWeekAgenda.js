@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useSelector} from 'react'
 import {
   StyleSheet, Text, View, TouchableOpacity
 } from 'react-native'
@@ -18,6 +18,8 @@ const compaignList = {
     link: 'AgendaTradeShows'
   }
 }
+const reload = useSelector(state=>state.cities.reload)
+console.log('reload',reload)
 const MonthWiseFashionWeekAgenda = props => {
   const { fashionWeekAgenda, month, navigation } = props;
   console.log('fashionWeekAgendaasasasa',fashionWeekAgenda)
